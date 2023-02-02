@@ -9,6 +9,8 @@ the models become larger, this for some reason seem to fail ⁉️
 In this project i will try and fail til i find a suitable solution for my problems, and i hope that some will stuble over this
 and maybe get some inspiration 😎
 
+🌟🌟🌟**If you like this concept make sure to give it a star**🌟🌟🌟
+
 ## This project consist of three parts:
 - API
 - Communication/Consumption
@@ -27,5 +29,3 @@ and maybe get some inspiration 😎
 - Uses the communication-part to communicate/consume the API
 - Simple frontend to showcase CRUD
 
-
-🌟🌟🌟**If you like this concept make sure to give it a star**🌟🌟🌟
