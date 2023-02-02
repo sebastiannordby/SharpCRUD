@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.Domain.Services.CustomerModels
 {
-    internal class CompositeCustomerService : ICompositeService<CustomerCompositeDto>
+    internal class CustomerCompositeService : ICompositeService<CustomerCompositeDto>
     {
         private readonly SharpCrudContext _dbContext;
 
-        public CompositeCustomerService(
+        public CustomerCompositeService(
             SharpCrudContext dbContext)
         {
             _dbContext = dbContext;

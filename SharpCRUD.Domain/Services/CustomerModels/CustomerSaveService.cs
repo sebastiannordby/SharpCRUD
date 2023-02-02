@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.Domain.Services.CustomerModels
 {
-    internal class SaveCustomerService : ISaveService<CustomerDto>
+    internal class CustomerSaveService : ISaveService<CustomerDto>
     {
         private readonly IAssembleService<Customer, CustomerDto> _assembleCustomerService;
         private readonly IValidateService<Customer, CustomerValidationResult> _validateCustomerService;
         private readonly SharpCrudContext _dbContext;
 
-        public SaveCustomerService(
+        public CustomerSaveService(
             IAssembleService<Customer, CustomerDto> assembleCustomerService,
             IValidateService<Customer, CustomerValidationResult> validateCustomerService,
             SharpCrudContext dbContext)

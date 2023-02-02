@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.Domain.Services.CustomerModels
 {
-    internal class AssembleCustomerService : IAssembleService<Customer, CustomerDto>
+    internal class CustomerAssembleService : IAssembleService<Customer, CustomerDto>
     {
         private SharpCrudContext _dbContext;
 
-        public AssembleCustomerService(SharpCrudContext dbContext) 
+        public CustomerAssembleService(SharpCrudContext dbContext) 
         {
             _dbContext = dbContext;
         }

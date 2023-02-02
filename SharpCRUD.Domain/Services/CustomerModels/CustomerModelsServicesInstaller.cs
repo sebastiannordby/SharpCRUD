@@ -16,10 +16,10 @@ namespace SharpCRUD.Domain.Services.CustomerModels
     {
         internal static IServiceCollection AddCustomerModelsServices(this IServiceCollection services)
         {
-            services.AddScoped<ISaveService<CustomerDto>, SaveCustomerService>();
-            services.AddScoped<IAssembleService<Customer, CustomerDto>, AssembleCustomerService>();
-            services.AddScoped<IValidateService<Customer, CustomerValidationResult>, ValidateCustomerService>();
-            services.AddScoped<ICompositeService<CustomerCompositeDto>, CompositeCustomerService>();
+            services.AddScoped<ISaveService<CustomerDto>, CustomerSaveService>();
+            services.AddScoped<IAssembleService<Customer, CustomerDto>, CustomerAssembleService>();
+            services.AddScoped<IValidateService<Customer, CustomerValidationResult>, CustomerValidateService>();
+            services.AddScoped<ICompositeService<CustomerCompositeDto>, CustomerCompositeService>();
 
             return services;
         }

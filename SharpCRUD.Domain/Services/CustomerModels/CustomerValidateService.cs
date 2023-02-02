@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.Domain.Services.CustomerModels
 {
-    internal class ValidateCustomerService : IValidateService<Customer, CustomerValidationResult>
+    internal class CustomerValidateService : IValidateService<Customer, CustomerValidationResult>
     {
         public Task<CustomerValidationResult> Validate(Customer entity)
         {
