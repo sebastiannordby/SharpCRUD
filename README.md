@@ -28,4 +28,4 @@ and maybe get some inspiration 😎
 - Simple frontend to showcase CRUD
 
 
-🌟**If you like this concept make sure to give it a star**
+🌟🌟🌟**If you like this concept make sure to give it a star**🌟🌟🌟
