@@ -1,5 +1,6 @@
 # SharpCRUD
-A better way to structure your CRUD-project.
+A better way to structure your CRUD-project with validation.
+
 
 ## This project consist of three parts:
 - API
