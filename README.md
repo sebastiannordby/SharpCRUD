@@ -11,10 +11,10 @@ A better way to structure your CRUD-project.
 - The domain logic should be separated from the API gateway
 - The gateway handles a http request and invokes domain logic
 
-## Communication/Consumption
+### Communication/Consumption
 - Conserned with how the frontend should communicate with the API
 - Could be published as a NuGet for api consumption
 
-## Frontend
+### Frontend
 - Uses the communication-part to communicate/consume the API
 - Simple frontend to showcase CRUD
