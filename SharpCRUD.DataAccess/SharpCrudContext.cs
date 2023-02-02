@@ -13,5 +13,10 @@ namespace SharpCRUD.DataAccess
     {
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+
+        public SharpCrudContext(DbContextOptions options) : base(options)
+        {
+
+        }
     }
 }
