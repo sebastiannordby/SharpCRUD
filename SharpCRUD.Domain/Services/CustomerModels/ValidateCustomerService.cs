@@ -1,4 +1,5 @@
-﻿using SharpCRUD.DataAccess.Models.CustomerModels;
+﻿using FluentValidation.Results;
+using SharpCRUD.DataAccess.Models.CustomerModels;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Shared.Validation.CustomerModels;
 using System;
@@ -13,9 +14,14 @@ namespace SharpCRUD.Domain.Services.CustomerModels
     {
         public Task<CustomerValidationResult> Validate(Customer entity)
         {
+            var validationFailures = new List<ValidationFailure>();
+
+            if (string.IsNullOrWhiteSpace(entity.Name))
+                validationFailures.Add(new ValidationFailure(nameof(entity.Name), "Name is required."));
+
             return Task.FromResult(new CustomerValidationResult()
             {
-                IsSuccessful = false
+                IsSuccessful = !validationFailures.Any()
             });
         }
     }

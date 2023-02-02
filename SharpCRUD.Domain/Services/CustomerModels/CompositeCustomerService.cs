@@ -22,6 +22,8 @@ namespace SharpCRUD.Domain.Services.CustomerModels
         public Task<CustomerCompositeDto> Find(Guid id)
         {
             var customer = _dbContext.Customers.Find(id);
+            if (customer == null)
+                throw new ArgumentException($"No Customer with given id({id})");
 
             return Task.FromResult(new CustomerCompositeDto()
             {
