@@ -14,13 +14,13 @@ namespace SharpCRUD.Domain.Services.CustomerModels
 {
     internal class CustomerSaveService : ISaveService<CustomerDto>
     {
-        private readonly IAssembleService<Customer, CustomerDto> _assembleCustomerService;
+        private readonly IAssembleService<CustomerAssembleResult, CustomerDto> _assembleCustomerService;
         private readonly IValidateService<Customer, CustomerValidationResult> _validateCustomerService;
         private readonly ISaveEntity<Customer> _saveCustomerEntityService;
         private readonly SharpCrudContext _dbContext;
 
         public CustomerSaveService(
-            IAssembleService<Customer, CustomerDto> assembleCustomerService,
+            IAssembleService<CustomerAssembleResult, CustomerDto> assembleCustomerService,
             IValidateService<Customer, CustomerValidationResult> validateCustomerService,
             ISaveEntity<Customer> saveCustomerEntityService,
             SharpCrudContext dbContext)
@@ -36,7 +36,8 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             if (model == null) 
                 throw new ArgumentNullException("Model cannot be null.");
 
-            var customer = await _assembleCustomerService.Assemble(model);
+            var assembleResult = await _assembleCustomerService.Assemble(model);
+            var customer = assembleResult.Customer;
             var customerValidationResult = await _validateCustomerService.Validate(customer);
 
             if (!customerValidationResult.IsSuccessful)

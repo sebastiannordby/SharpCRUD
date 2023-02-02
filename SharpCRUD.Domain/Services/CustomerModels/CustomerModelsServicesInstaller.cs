@@ -17,7 +17,7 @@ namespace SharpCRUD.Domain.Services.CustomerModels
         internal static IServiceCollection AddCustomerModelsServices(this IServiceCollection services)
         {
             services.AddScoped<ISaveService<CustomerDto>, CustomerSaveService>();
-            services.AddScoped<IAssembleService<Customer, CustomerDto>, CustomerAssembleService>();
+            services.AddScoped<IAssembleService<CustomerAssembleResult, CustomerDto>, CustomerAssembleService>();
             services.AddScoped<IValidateService<Customer, CustomerValidationResult>, CustomerValidateService>();
             services.AddScoped<ICompositeService<CustomerCompositeDto>, CustomerCompositeService>();
             services.AddScoped<ISaveEntity<Customer>, GenericSaveEntityService<Customer>>();

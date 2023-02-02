@@ -10,7 +10,13 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.Domain.Services.CustomerModels
 {
-    internal class CustomerAssembleService : IAssembleService<Customer, CustomerDto>
+    internal class CustomerAssembleResult : AssembleResult
+    {
+        public Customer Customer { get; set; }
+        public List<CustomerAddress> Addresses { get; set; }
+    }
+
+    internal class CustomerAssembleService : IAssembleService<CustomerAssembleResult, CustomerDto>
     {
         private SharpCrudContext _dbContext;
 
@@ -19,7 +25,7 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             _dbContext = dbContext;
         }
 
-        public Task<Customer> Assemble(CustomerDto dto)
+        public Task<CustomerAssembleResult> Assemble(CustomerDto dto)
         {
             var processedCustomer = _dbContext.Customers.Find(dto.Id);
 
@@ -37,7 +43,10 @@ namespace SharpCRUD.Domain.Services.CustomerModels
                 );
             }
 
-            return Task.FromResult(processedCustomer);
+            return Task.FromResult(new CustomerAssembleResult()
+            {
+                Customer = processedCustomer
+            });
         }
     }
 }

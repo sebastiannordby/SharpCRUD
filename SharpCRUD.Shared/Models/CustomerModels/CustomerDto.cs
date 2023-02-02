@@ -1,4 +1,5 @@
 ﻿using SharpCRUD.Shared.Models;
+using SharpCRUD.Shared.Models.CustomerModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace SharpCRUD.Shared.CustomerModels
     {
         public int Number { get; set; }
         public string Name { get; set; }
+
+        public List<CustomerAddressDto> Addresses { get; set; }
     }
 }

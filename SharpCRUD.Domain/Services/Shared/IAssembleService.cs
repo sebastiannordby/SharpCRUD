@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.Domain.Services.Shared
 {
-    internal interface IAssembleService<TEntity, TFromDto>
+    internal abstract class AssembleResult
     {
-        Task<TEntity> Assemble(TFromDto dto);
+
+    }
+
+    internal interface IAssembleService<TAssembleResult, TFromDto>
+        where TAssembleResult : AssembleResult
+    {
+        Task<TAssembleResult> Assemble(TFromDto dto);
     }
 }
