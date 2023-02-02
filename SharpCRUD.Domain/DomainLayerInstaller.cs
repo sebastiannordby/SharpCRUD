@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SharpCRUD.Domain.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace SharpCRUD.Domain
     {
         public static IServiceCollection AddDomainLayer(this IServiceCollection services)
         {
-
-            return services;
+            return services
+                .AddDomainLayerServices();
         }
     }
 }

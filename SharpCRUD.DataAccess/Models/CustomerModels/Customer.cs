@@ -10,5 +10,25 @@ namespace SharpCRUD.DataAccess.Models.CustomerModels
     {
         public int Number { get; private set; }
         public string Name { get; private set; }
+
+        protected Customer()
+        {
+
+        }
+
+        public Customer(
+            Guid id,
+            int number,
+            string name)
+        {
+            Id = id;
+            Number = number;
+            Name = name;
+        }
+
+        public void Update(string name)
+        {
+            Name = name;
+        }
     }
 }
