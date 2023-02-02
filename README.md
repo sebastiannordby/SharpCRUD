@@ -26,3 +26,7 @@ and maybe get some inspiration 😎
 - Uses the communication-part to communicate/consume the API
 - Simple frontend to showcase CRUD
 
+## How i commit for this project
+🔵 When i do some refactoring
+🟢 When i have wrote a test that passes
+🔴 When i have added code and tests fails
