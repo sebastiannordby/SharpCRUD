@@ -2,6 +2,7 @@
 using SharpCRUD.Domain.Exceptions;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Shared.CustomerModels;
+using SharpCRUD.Shared.Models.CustomerModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,23 @@ namespace SharpCRUD.Domain.Tests.Services.CustomerModels
 
                 });
             });
+        }
+
+        [Test]
+        public async Task FindCompositeCustomer()
+        {
+            var customerService = _serviceProvider.GetService<ISaveService<CustomerDto>>();
+            var customerCompositeService = _serviceProvider.GetService<ICompositeService<CustomerCompositeDto>>();
+
+            var customerId = await customerService.Save(new CustomerDto()
+            {
+                Number = 1,
+                Name = nameof(FindCompositeCustomer)
+            });
+
+            var customerComposite = await customerCompositeService.Find(customerId);
+
+            Assert.IsNotNull(customerComposite);
         }
     }
 }

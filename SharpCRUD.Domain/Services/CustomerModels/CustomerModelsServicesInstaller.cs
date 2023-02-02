@@ -2,6 +2,7 @@
 using SharpCRUD.DataAccess.Models.CustomerModels;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Shared.CustomerModels;
+using SharpCRUD.Shared.Models.CustomerModels;
 using SharpCRUD.Shared.Validation.CustomerModels;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             services.AddScoped<ISaveService<CustomerDto>, SaveCustomerService>();
             services.AddScoped<IAssembleService<Customer, CustomerDto>, AssembleCustomerService>();
             services.AddScoped<IValidateService<Customer, CustomerValidationResult>, ValidateCustomerService>();
+            services.AddScoped<ICompositeService<CustomerCompositeDto>, CompositeCustomerService>();
 
             return services;
         }
