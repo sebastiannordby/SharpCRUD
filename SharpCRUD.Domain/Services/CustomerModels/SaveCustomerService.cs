@@ -39,7 +39,15 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             if (!customerValidationResult.IsSuccessful)
                 throw new SharpCRUDValidationException(customerValidationResult);
 
-            _dbContext.Customers.Add(customer);
+            if(customer.IsNew)
+            {
+                _dbContext.Customers.Add(customer);
+            }
+            else
+            {
+                _dbContext.Customers.Update(customer);
+            }
+
             _dbContext.SaveChanges();
 
             return customer.Id;

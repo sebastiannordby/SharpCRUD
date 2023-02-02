@@ -75,11 +75,15 @@ namespace SharpCRUD.Domain.Tests.Services.CustomerModels
             });
 
             var customerComposite = await customerCompositeService.Find(customerId);
+            var updatedName = "Updated name";
+
+            customerComposite.Name = updatedName;
 
             var updatedCustomerId = await customerService.Save(customerComposite.ToDto());
 
             Assert.IsNotNull(customerComposite);
             Assert.IsTrue(customerId == updatedCustomerId);
+            Assert.IsTrue(nameof(FindCompositeCustomer) != updatedName);
         }
     }
 }
