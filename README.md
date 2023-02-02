@@ -12,9 +12,6 @@ and maybe get some inspiration 😎
 🌟🌟🌟**If you like this concept make sure to give it a star**🌟🌟🌟
 
 ## This project consist of three parts:
-- API
-- Communication/Consumption
-- Frontend
 
 ### API
 - The API should handle the domain/business logic
