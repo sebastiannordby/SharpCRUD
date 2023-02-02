@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.DataAccess.Models.CustomerModels
 {
-    public class Customer
+    public class Customer : BaseEntity
     {
-
+        public int Number { get; private set; }
+        public string Name { get; private set; }
     }
 }

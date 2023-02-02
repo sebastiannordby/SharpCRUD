@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SharpCRUD.DataAccess.Models.CustomerModels;
-using SharpCRUD.DataAccess.Models.SupplierModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using SharpCRUD.DataAccess.Models.CustomerModels;
+using SharpCRUD.DataAccess.Models.SupplierModels;
 
 namespace SharpCRUD.DataAccess
 {

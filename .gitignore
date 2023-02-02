@@ -9,3 +9,10 @@
 /SharpCRUD.DataAccess/obj
 /SharpCRUD.DataAcess.Tests/obj
 /SharpCRUD.Domain.Models/obj
+/SharpCRUD.DataAccess/bin/Debug/net6.0
+/SharpCRUD.DataAcess.Tests/bin/Debug/net6.0
+/SharpCRUD.Domain/bin/Debug/net6.0
+/SharpCRUD.RestAPI/obj
+/SharpCRUD.Testing.Shared/bin/Debug/net6.0
+/SharpCRUD.Testing.Shared/obj
+/SharpCRUD.RestAPI/appsettings.Development.json

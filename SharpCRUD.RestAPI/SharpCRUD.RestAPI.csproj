@@ -4,17 +4,16 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>b02794cf-cf83-4845-9ae5-9fa66f51d118</UserSecretsId>
+    <UserSecretsId>d8041854-6fed-4184-88d3-38f473129069</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.4.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SharpCRUD.DataAccess\SharpCRUD.DataAccess.csproj" />
+    <ProjectReference Include="..\SharpCRUD.Domain\SharpCRUD.Domain.csproj" />
   </ItemGroup>
 
 </Project>
