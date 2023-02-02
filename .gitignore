@@ -6,3 +6,6 @@
 /SharpCRUD.Domain/obj
 /SharpCRUD.Shared/obj
 /.vs/ProjectEvaluation
+/SharpCRUD.DataAccess/obj
+/SharpCRUD.DataAcess.Tests/obj
+/SharpCRUD.Domain.Models/obj

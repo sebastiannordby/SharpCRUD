@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpCRUD.Domain.Models.SupplierModels
+namespace SharpCRUD.DataAccess.Models.SupplierModels
 {
-    internal class Supplier
+    public class Supplier
     {
 
     }

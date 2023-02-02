@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpCRUD.Domain.Models.CustomerModels
+namespace SharpCRUD.DataAccess.Models.CustomerModels
 {
-    internal class Customer
+    public class Customer
     {
 
     }
