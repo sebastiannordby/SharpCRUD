@@ -16,15 +16,18 @@ namespace SharpCRUD.Domain.Services.CustomerModels
     {
         private readonly IAssembleService<Customer, CustomerDto> _assembleCustomerService;
         private readonly IValidateService<Customer, CustomerValidationResult> _validateCustomerService;
+        private readonly ISaveEntity<Customer> _saveCustomerEntityService;
         private readonly SharpCrudContext _dbContext;
 
         public CustomerSaveService(
             IAssembleService<Customer, CustomerDto> assembleCustomerService,
             IValidateService<Customer, CustomerValidationResult> validateCustomerService,
+            ISaveEntity<Customer> saveCustomerEntityService,
             SharpCrudContext dbContext)
         {
             _assembleCustomerService = assembleCustomerService;
             _validateCustomerService = validateCustomerService;
+            _saveCustomerEntityService = saveCustomerEntityService;
             _dbContext = dbContext;
         }
 
@@ -39,16 +42,7 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             if (!customerValidationResult.IsSuccessful)
                 throw new SharpCRUDValidationException(customerValidationResult);
 
-            if(customer.IsNew)
-            {
-                _dbContext.Customers.Add(customer);
-            }
-            else
-            {
-                _dbContext.Customers.Update(customer);
-            }
-
-            _dbContext.SaveChanges();
+            await _saveCustomerEntityService.Save(customer);
 
             return customer.Id;
         }
