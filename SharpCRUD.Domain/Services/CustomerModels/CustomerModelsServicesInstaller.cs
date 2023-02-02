@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SharpCRUD.DataAccess.Models.CustomerModels;
+using SharpCRUD.Domain.Services.CustomerModels.Address;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Shared.CustomerModels;
 using SharpCRUD.Shared.Models.CustomerModels;
@@ -16,11 +17,15 @@ namespace SharpCRUD.Domain.Services.CustomerModels
     {
         internal static IServiceCollection AddCustomerModelsServices(this IServiceCollection services)
         {
+            // Customer related
             services.AddScoped<ISaveService<CustomerDto>, CustomerSaveService>();
             services.AddScoped<IAssembleService<CustomerAssembleResult, CustomerDto>, CustomerAssembleService>();
             services.AddScoped<IValidateService<Customer, CustomerValidationResult>, CustomerValidateService>();
             services.AddScoped<ICompositeService<CustomerCompositeDto>, CustomerCompositeService>();
             services.AddScoped<ISaveEntity<Customer>, GenericSaveEntityService<Customer>>();
+
+            // CustomerAddress
+            services.AddScoped<IAssembleService<CustomerAddressAssembleResult, CustomerAddressDto>, CustomerAddressAssembleService>();
 
             return services;
         }

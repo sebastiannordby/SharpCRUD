@@ -26,13 +26,16 @@ namespace SharpCRUD.Domain.Services.Shared
 
         public Task Save(TEntity entity)
         {
-            if(entity.IsNew)
+            var dbSet = _dbContext.Set<TEntity>();
+            var shouldUpdate = dbSet.Any(x => x.Id == entity.Id);
+
+            if(shouldUpdate)
             {
-                _dbContext.Set<TEntity>().Add(entity);
+                dbSet.Update(entity);
             }
             else
             {
-                _dbContext.Set<TEntity>().Update(entity);
+                dbSet.Add(entity);
             }
 
             _dbContext.SaveChanges();

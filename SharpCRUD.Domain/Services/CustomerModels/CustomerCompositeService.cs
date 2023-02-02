@@ -1,4 +1,5 @@
-﻿using SharpCRUD.DataAccess;
+﻿using Microsoft.EntityFrameworkCore;
+using SharpCRUD.DataAccess;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Shared.Models.CustomerModels;
 using System;
@@ -21,7 +22,7 @@ namespace SharpCRUD.Domain.Services.CustomerModels
 
         public Task<CustomerCompositeDto> Find(Guid id)
         {
-            var customer = _dbContext.Customers.Find(id);
+            var customer = _dbContext.Customers.AsNoTracking().FirstOrDefault(x => x.Id == id);
             if (customer == null)
                 throw new ArgumentException($"No Customer with given id({id})");
 

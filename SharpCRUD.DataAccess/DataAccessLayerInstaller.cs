@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace SharpCRUD.DataAccess
 {
@@ -26,7 +27,10 @@ namespace SharpCRUD.DataAccess
         {
             services.AddDbContextFactory<SharpCrudContext>(options =>
             {
-                options.UseInMemoryDatabase(testDatabaseName);
+                options.UseInMemoryDatabase(testDatabaseName, b => {
+
+                    b.EnableNullChecks(false);
+                });
             });
 
             return services;

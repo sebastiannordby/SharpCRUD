@@ -10,9 +10,11 @@ namespace SharpCRUD.DataAccess.Models.CustomerModels
     {
         public int Number { get; private set; }
         public string Name { get; private set; }
+        public string OrganizationNumber { get; private set; }
+        public string PhoneNumber { get; private set; }
         public bool IsLocked { get; private set; }
 
-        protected Customer()
+        protected Customer() : base()
         {
 
         }
@@ -20,15 +22,24 @@ namespace SharpCRUD.DataAccess.Models.CustomerModels
         public Customer(
             Guid id,
             int number,
-            string name) : base(id)
+            string name,
+            string organizationNumber,
+            string phoneNumber) : base(id)
         {
             Number = number;
             Name = name;
+            OrganizationNumber = organizationNumber;
+            PhoneNumber = phoneNumber;
         }
 
-        public void Update(string name)
+        public void Update(
+            string name,
+            string organizationNumber,
+            string phoneNumber)
         {
             Name = name;
+            OrganizationNumber = organizationNumber;
+            PhoneNumber = phoneNumber;
         }
 
         public void Unlock()

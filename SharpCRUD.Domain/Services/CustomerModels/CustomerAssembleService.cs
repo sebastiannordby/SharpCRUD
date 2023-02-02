@@ -1,7 +1,10 @@
 ﻿using SharpCRUD.DataAccess;
 using SharpCRUD.DataAccess.Models.CustomerModels;
+using SharpCRUD.Domain.Extensions;
+using SharpCRUD.Domain.Services.CustomerModels.Address;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Shared.CustomerModels;
+using SharpCRUD.Shared.Models.CustomerModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,35 +21,57 @@ namespace SharpCRUD.Domain.Services.CustomerModels
 
     internal class CustomerAssembleService : IAssembleService<CustomerAssembleResult, CustomerDto>
     {
-        private SharpCrudContext _dbContext;
+        private readonly SharpCrudContext _dbContext;
+        private readonly IAssembleService<CustomerAddressAssembleResult, CustomerAddressDto> _addressAssembler;
 
-        public CustomerAssembleService(SharpCrudContext dbContext) 
+        public CustomerAssembleService(
+            SharpCrudContext dbContext, 
+            IAssembleService<CustomerAddressAssembleResult, CustomerAddressDto> addressAssembler)
         {
             _dbContext = dbContext;
+            _addressAssembler = addressAssembler;
         }
 
-        public Task<CustomerAssembleResult> Assemble(CustomerDto dto)
+        public async Task<CustomerAssembleResult> Assemble(CustomerDto dto)
         {
             var processedCustomer = _dbContext.Customers.Find(dto.Id);
+            var processedAddresses = new List<CustomerAddress>();
 
             if(processedCustomer != null)
             {
                 processedCustomer.Update(
-                    name: dto.Name);
+                    name: dto.Name,
+                    organizationNumber: dto.OrganizationNumber,
+                    phoneNumber: dto.PhoneNumber
+                );
             }
             else
             {
+                var newNumber = _dbContext.Customers
+                    .Select(x => x.Number)
+                    .NewNumberOrOne();
+
                 processedCustomer = new Customer(
                     id: dto.Id,
-                    number: dto.Number,
-                    name: dto.Name
+                    number: newNumber,
+                    name: dto.Name,
+                    organizationNumber: dto.OrganizationNumber,
+                    phoneNumber: dto.PhoneNumber
                 );
             }
 
-            return Task.FromResult(new CustomerAssembleResult()
+            foreach(var address in dto.Addresses ?? new List<CustomerAddressDto>())
             {
-                Customer = processedCustomer
-            });
+                address.CustomerId = processedCustomer.Id;
+                var addressAssembleResult = await _addressAssembler.Assemble(address);
+                processedAddresses.Add(addressAssembleResult.Address);
+            }
+
+            return new CustomerAssembleResult()
+            {
+                Customer = processedCustomer,
+                Addresses = processedAddresses
+            };
         }
     }
 }
