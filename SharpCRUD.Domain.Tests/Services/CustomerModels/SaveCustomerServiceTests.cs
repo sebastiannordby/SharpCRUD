@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SharpCRUD.Domain.Exceptions;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Shared.CustomerModels;
 using System;
@@ -29,5 +30,18 @@ namespace SharpCRUD.Domain.Tests.Services.CustomerModels
             });
         }
 
+        [Test]
+        public async Task SaveShouldThrowValidationException()
+        {
+            var customerService = _serviceProvider.GetService<ISaveService<CustomerDto>>();
+
+            Assert.ThrowsAsync<SharpCRUDValidationException>(async () =>
+            {
+                await customerService.Save(new CustomerDto()
+                {
+
+                });
+            });
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using SharpCRUD.DataAccess.Models.CustomerModels;
+using SharpCRUD.Domain.Exceptions;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Shared.CustomerModels;
+using SharpCRUD.Shared.Validation.CustomerModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,18 +14,28 @@ namespace SharpCRUD.Domain.Services.CustomerModels
     internal class SaveCustomerService : ISaveService<CustomerDto>
     {
         private readonly IAssembleService<Customer, CustomerDto> _assembleCustomerService;
+        private readonly IValidateService<Customer, CustomerValidationResult> _validateCustomerService;
 
-        public SaveCustomerService(IAssembleService<Customer, CustomerDto> assembleCustomerService)
+        public SaveCustomerService(
+            IAssembleService<Customer, CustomerDto> assembleCustomerService, 
+            IValidateService<Customer, CustomerValidationResult> validateCustomerService)
         {
             _assembleCustomerService = assembleCustomerService;
+            _validateCustomerService = validateCustomerService;
         }
 
-        public Task<Guid> Save(CustomerDto model)
+        public async Task<Guid> Save(CustomerDto model)
         {
             if (model == null) 
                 throw new ArgumentNullException("Model cannot be null.");
 
-            return Task.FromResult(Guid.Empty);
+            var customer = await _assembleCustomerService.Assemble(model);
+            var customerValidationResult = await _validateCustomerService.Validate(customer);
+
+            if (!customerValidationResult.IsSuccessful)
+                throw new SharpCRUDValidationException(customerValidationResult);
+
+            return Guid.Empty;
         }
     }
 }
