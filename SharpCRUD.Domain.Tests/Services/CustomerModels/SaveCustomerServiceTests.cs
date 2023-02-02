@@ -61,5 +61,25 @@ namespace SharpCRUD.Domain.Tests.Services.CustomerModels
 
             Assert.IsNotNull(customerComposite);
         }
+
+        [Test]
+        public async Task SaveCompositeCustomer()
+        {
+            var customerService = _serviceProvider.GetService<ISaveService<CustomerDto>>();
+            var customerCompositeService = _serviceProvider.GetService<ICompositeService<CustomerCompositeDto>>();
+
+            var customerId = await customerService.Save(new CustomerDto()
+            {
+                Number = 1,
+                Name = nameof(FindCompositeCustomer)
+            });
+
+            var customerComposite = await customerCompositeService.Find(customerId);
+
+            var updatedCustomerId = await customerService.Save(customerComposite.ToDto());
+
+            Assert.IsNotNull(customerComposite);
+            Assert.IsTrue(customerId == updatedCustomerId);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharpCRUD.Shared.CustomerModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,15 @@ namespace SharpCRUD.Shared.Models.CustomerModels
     {
         public int Number { get; set; }
         public string Name { get; set; }
+
+        public CustomerDto ToDto()
+        {
+            return new CustomerDto()
+            {
+                Id = Id,
+                Number = Number,
+                Name = Name
+            };
+        }
     }
 }
