@@ -27,6 +27,6 @@ and maybe get some inspiration 😎
 - Simple frontend to showcase CRUD
 
 ## How i commit for this project
-🔵 When i do some refactoring
-🟢 When i have wrote a test that passes
-🔴 When i have added code and tests fails
+- 🔵 When i do some refactoring
+- 🟢 When i have wrote a test that passes
+- 🔴 When i have added code and tests fails
