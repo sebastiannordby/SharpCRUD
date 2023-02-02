@@ -1,4 +1,5 @@
-﻿using SharpCRUD.DataAccess.Models.CustomerModels;
+﻿using SharpCRUD.DataAccess;
+using SharpCRUD.DataAccess.Models.CustomerModels;
 using SharpCRUD.Domain.Exceptions;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Shared.CustomerModels;
@@ -15,13 +16,16 @@ namespace SharpCRUD.Domain.Services.CustomerModels
     {
         private readonly IAssembleService<Customer, CustomerDto> _assembleCustomerService;
         private readonly IValidateService<Customer, CustomerValidationResult> _validateCustomerService;
+        private readonly SharpCrudContext _dbContext;
 
         public SaveCustomerService(
-            IAssembleService<Customer, CustomerDto> assembleCustomerService, 
-            IValidateService<Customer, CustomerValidationResult> validateCustomerService)
+            IAssembleService<Customer, CustomerDto> assembleCustomerService,
+            IValidateService<Customer, CustomerValidationResult> validateCustomerService,
+            SharpCrudContext dbContext)
         {
             _assembleCustomerService = assembleCustomerService;
             _validateCustomerService = validateCustomerService;
+            _dbContext = dbContext;
         }
 
         public async Task<Guid> Save(CustomerDto model)
@@ -35,7 +39,10 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             if (!customerValidationResult.IsSuccessful)
                 throw new SharpCRUDValidationException(customerValidationResult);
 
-            return Guid.Empty;
+            _dbContext.Customers.Add(customer);
+            _dbContext.SaveChanges();
+
+            return customer.Id;
         }
     }
 }
