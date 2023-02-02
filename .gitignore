@@ -2,3 +2,7 @@
 /Frontend/obj/Debug/net6.0
 /Frontend/obj
 /RestAPI/obj
+/Domain/obj
+/SharpCRUD.Domain/obj
+/SharpCRUD.Shared/obj
+/.vs/ProjectEvaluation
