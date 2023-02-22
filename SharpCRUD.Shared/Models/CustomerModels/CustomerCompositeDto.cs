@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.Shared.Models.CustomerModels
 {
-    public class CustomerCompositeDto : CompositeDto
+    public class CustomerCompositeDto : CompositeDto<CustomerDto>
     {
         public int Number { get; set; }
         public string Name { get; set; }
 
-        public CustomerDto ToDto()
+        public override CustomerDto Composite()
         {
             return new CustomerDto()
             {

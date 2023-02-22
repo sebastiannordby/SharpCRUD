@@ -26,13 +26,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AAA36497
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DFF577D8-CA20-45F7-8740-81C0F661B010}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpCRUD.DataAcess.Tests", "SharpCRUD.DataAcess.Tests\SharpCRUD.DataAcess.Tests.csproj", "{458474AD-46F6-4693-B33B-2C78C707CAD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpCRUD.DataAccess.Tests", "SharpCRUD.DataAcess.Tests\SharpCRUD.DataAccess.Tests.csproj", "{458474AD-46F6-4693-B33B-2C78C707CAD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCRUD.RestAPI", "SharpCRUD.RestAPI\SharpCRUD.RestAPI.csproj", "{C1A63618-6899-46E1-B12B-7EBE679D9BD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpCRUD.RestAPI", "SharpCRUD.RestAPI\SharpCRUD.RestAPI.csproj", "{C1A63618-6899-46E1-B12B-7EBE679D9BD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCRUD.Testing.Shared", "SharpCRUD.Testing.Shared\SharpCRUD.Testing.Shared.csproj", "{8087F507-0C34-4E2C-8375-2963A1949DCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpCRUD.Testing.Shared", "SharpCRUD.Testing.Shared\SharpCRUD.Testing.Shared.csproj", "{8087F507-0C34-4E2C-8375-2963A1949DCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCRUD.Domain.Tests", "SharpCRUD.Domain.Tests\SharpCRUD.Domain.Tests.csproj", "{611117D5-0698-43BC-A967-12935F2CE73D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpCRUD.Domain.Tests", "SharpCRUD.Domain.Tests\SharpCRUD.Domain.Tests.csproj", "{611117D5-0698-43BC-A967-12935F2CE73D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

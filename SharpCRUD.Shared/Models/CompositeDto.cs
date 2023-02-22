@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.Shared.Models
 {
-    public class CompositeDto : BaseDto
+    public abstract class CompositeDto<TDto> : BaseDto
     {
-
+        public abstract TDto Composite();
     }
 }

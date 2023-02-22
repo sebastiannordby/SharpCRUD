@@ -23,6 +23,7 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             services.AddScoped<IValidateService<Customer, CustomerValidationResult>, CustomerValidateService>();
             services.AddScoped<ICompositeService<CustomerCompositeDto>, CustomerCompositeService>();
             services.AddScoped<ISaveEntity<Customer>, GenericSaveEntityService<Customer>>();
+            services.AddScoped<IEntityNumberService<Customer>, CustomerNumberService>();
 
             // CustomerAddress
             services.AddScoped<IAssembleService<CustomerAddressAssembleResult, CustomerAddressDto>, CustomerAddressAssembleService>();

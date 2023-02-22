@@ -79,7 +79,8 @@ namespace SharpCRUD.Domain.Tests.Services.CustomerModels
 
             customerComposite.Name = updatedName;
 
-            var updatedCustomerId = await customerService.Save(customerComposite.ToDto());
+            var customerDto = customerComposite.Composite();
+            var updatedCustomerId = await customerService.Save(customerDto);
 
             Assert.IsNotNull(customerComposite);
             Assert.IsTrue(customerId == updatedCustomerId);

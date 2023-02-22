@@ -22,13 +22,16 @@ namespace SharpCRUD.Domain.Services.CustomerModels
     internal class CustomerAssembleService : IAssembleService<CustomerAssembleResult, CustomerDto>
     {
         private readonly SharpCrudContext _dbContext;
+        private readonly CustomerNumberService _customerNumberService;
         private readonly IAssembleService<CustomerAddressAssembleResult, CustomerAddressDto> _addressAssembler;
 
         public CustomerAssembleService(
             SharpCrudContext dbContext, 
+            CustomerNumberService customerNumberService,
             IAssembleService<CustomerAddressAssembleResult, CustomerAddressDto> addressAssembler)
         {
             _dbContext = dbContext;
+            _customerNumberService = customerNumberService;
             _addressAssembler = addressAssembler;
         }
 
@@ -47,13 +50,12 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             }
             else
             {
-                var newNumber = _dbContext.Customers
-                    .Select(x => x.Number)
-                    .NewNumberOrOne();
+                var number = await _customerNumberService
+                    .GetRequestedOrNewNumber(dto.Number);
 
                 processedCustomer = new Customer(
                     id: dto.Id,
-                    number: newNumber,
+                    number: number,
                     name: dto.Name,
                     organizationNumber: dto.OrganizationNumber,
                     phoneNumber: dto.PhoneNumber
