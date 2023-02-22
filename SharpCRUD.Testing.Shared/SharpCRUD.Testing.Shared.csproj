@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SharpCRUD.DataAccess\SharpCRUD.DataAccess.csproj" />
+    <ProjectReference Include="..\SharpCRUD.Domain.UseCases\SharpCRUD.Domain.UseCases.csproj" />
     <ProjectReference Include="..\SharpCRUD.Domain\SharpCRUD.Domain.csproj" />
   </ItemGroup>
 

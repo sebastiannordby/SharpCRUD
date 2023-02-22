@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SharpCRUD.DataAccess;
 using SharpCRUD.Domain;
 using System;
+using SharpCRUD.Domain.UseCases;
 
 namespace SharpCRUD.Testing.Shared
 {
@@ -19,6 +20,7 @@ namespace SharpCRUD.Testing.Shared
 
             services.AddTestDataAccessLayer(nameof(SharpCRUDTesting));
             services.AddDomainLayer();
+            services.AddDomainUseCases();
 
             return services.BuildServiceProvider();
         }
