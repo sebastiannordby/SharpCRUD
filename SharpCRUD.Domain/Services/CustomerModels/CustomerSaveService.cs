@@ -16,18 +16,15 @@ namespace SharpCRUD.Domain.Services.CustomerModels
     {
         private readonly IAssembleService<CustomerAssembleResult, CustomerDto> _assembleCustomerService;
         private readonly IValidateService<CustomerAssembleResult, CustomerValidationResult> _validateCustomerService;
-        private readonly ISaveEntity<Customer> _saveCustomerEntityService;
         private readonly SharpCrudContext _dbContext;
 
         public CustomerSaveService(
             IAssembleService<CustomerAssembleResult, CustomerDto> assembleCustomerService,
             IValidateService<CustomerAssembleResult, CustomerValidationResult> validateCustomerService,
-            ISaveEntity<Customer> saveCustomerEntityService,
             SharpCrudContext dbContext)
         {
             _assembleCustomerService = assembleCustomerService;
             _validateCustomerService = validateCustomerService;
-            _saveCustomerEntityService = saveCustomerEntityService;
             _dbContext = dbContext;
         }
 
@@ -39,14 +36,12 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             var assembleResult = await _assembleCustomerService
                 .Assemble(model);
           
-            var customerValidationResult = await _validateCustomerService
+            var validationResult = await _validateCustomerService
                 .Validate(assembleResult);
-            if (!customerValidationResult.IsSuccessful)
-                throw new SharpCRUDValidationException(customerValidationResult);
+            if (!validationResult.IsSuccessful)
+                throw new SharpCRUDValidationException(validationResult);
 
-            await _saveCustomerEntityService.Save(assembleResult.Customer);
-
-            return assembleResult.Customer.Id.Value;
+            return assembleResult.Customer.Model.Id.Value;
         }
     }
 }

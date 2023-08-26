@@ -12,7 +12,13 @@ namespace SharpCRUD.Domain.Services.CustomerModels.Address
 {
     internal class CustomerAddressAssembleResult : AssembleResult
     {
-        public CustomerAddress Address { get; set; }
+        internal EntityAssembleResult<CustomerAddress> Address { get; private set; }
+
+        internal CustomerAddressAssembleResult(
+            EntityAssembleResult<CustomerAddress> address)
+        {
+            Address = address;
+        }
     }
 
     internal class CustomerAddressAssembleService : IAssembleService<CustomerAddressAssembleResult, CustomerAddressDto>
@@ -29,6 +35,7 @@ namespace SharpCRUD.Domain.Services.CustomerModels.Address
         {
             var processedEntity = _dbContext.CustomerAddresses
                 .FirstOrDefault(x => x.Id.Value == dto.Id);
+            var isNew = processedEntity == null;
 
             if (processedEntity != null) 
             {
@@ -53,10 +60,8 @@ namespace SharpCRUD.Domain.Services.CustomerModels.Address
                 );
             }
 
-            return Task.FromResult(new CustomerAddressAssembleResult() 
-            { 
-                Address = processedEntity
-            });
+            return Task.FromResult(new CustomerAddressAssembleResult(
+                address: new(processedEntity, isNew)));
         }
     }
 }

@@ -15,8 +15,14 @@ namespace SharpCRUD.Domain.Services.CustomerModels
 {
     internal class CustomerAssembleResult : AssembleResult
     {
-        public Customer Customer { get; set; }
-        public List<CustomerAddress> Addresses { get; set; }
+        internal EntityAssembleResult<Customer> Customer { get; set; }
+        internal List<EntityAssembleResult<CustomerAddress>> Addresses { get; set; }
+
+        internal CustomerAssembleResult(EntityAssembleResult<Customer> customer, List<EntityAssembleResult<CustomerAddress>> addresses)
+        {
+            Customer = customer;
+            Addresses = addresses;
+        }
     }
 
     internal class CustomerAssembleService : IAssembleService<CustomerAssembleResult, CustomerDto>
@@ -37,8 +43,10 @@ namespace SharpCRUD.Domain.Services.CustomerModels
 
         public async Task<CustomerAssembleResult> Assemble(CustomerDto dto)
         {
-            var processedCustomer = _dbContext.Customers.Find(dto.Id);
-            var processedAddresses = new List<CustomerAddress>();
+            var processedCustomer = _dbContext.Customers
+                .FirstOrDefault(x => x.Id.Value == dto.Id);
+            var isNew = processedCustomer == null;
+            var processedAddresses = new List<EntityAssembleResult<CustomerAddress>>();
 
             if(processedCustomer != null)
             {
@@ -68,11 +76,9 @@ namespace SharpCRUD.Domain.Services.CustomerModels
                 processedAddresses.Add(addressAssembleResult.Address);
             }
 
-            return new CustomerAssembleResult()
-            {
-                Customer = processedCustomer,
-                Addresses = processedAddresses
-            };
+            return new CustomerAssembleResult(
+                customer: new(processedCustomer, isNew),
+                addresses: processedAddresses);
         }
     }
 }

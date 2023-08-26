@@ -18,19 +18,19 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             var customer = assembleRes.Customer;
             var addresses = assembleRes.Addresses;
 
-            if (string.IsNullOrWhiteSpace(customer.Name))
+            if (string.IsNullOrWhiteSpace(customer.Model.Name))
                 validationFailures.Add(new(
-                    nameof(customer.Name), "Name is required."));
+                    nameof(customer.Model.Name), "Name is required."));
 
-            foreach(var address in addresses ?? new List<CustomerAddress>())
+            foreach(var address in addresses ?? new())
             {
-                if(address.CustomerId != customer.Id)
+                if(address.Model.CustomerId != customer.Model.Id)
                     validationFailures.Add(new(
-                        nameof(address.CustomerId), $"Address({address.Id}) not connected to Customer."));
+                        nameof(address.Model.CustomerId), $"Address({address.Model.Id}) not connected to Customer."));
 
-                if (string.IsNullOrWhiteSpace(address.AddressLine1))
+                if (string.IsNullOrWhiteSpace(address.Model.AddressLine1))
                     validationFailures.Add(new(
-                        nameof(address.AddressLine1), "AddressLine1 is required."));
+                        nameof(address.Model.AddressLine1), "AddressLine1 is required."));
             }
 
             return await Task.FromResult(
