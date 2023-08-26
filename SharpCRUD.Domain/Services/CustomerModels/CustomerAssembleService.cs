@@ -1,5 +1,5 @@
-﻿using SharpCRUD.DataAccess;
-using SharpCRUD.DataAccess.Models.CustomerModels;
+﻿using SharpCRUD.Domain;
+using SharpCRUD.Domain.Models.CustomerModels;
 using SharpCRUD.Domain.Extensions;
 using SharpCRUD.Domain.Services.CustomerModels.Address;
 using SharpCRUD.Domain.Services.Shared;
@@ -45,8 +45,7 @@ namespace SharpCRUD.Domain.Services.CustomerModels
                 processedCustomer.Update(
                     name: dto.Name,
                     organizationNumber: dto.OrganizationNumber,
-                    phoneNumber: dto.PhoneNumber
-                );
+                    phoneNumber: dto.PhoneNumber);
             }
             else
             {
@@ -54,7 +53,7 @@ namespace SharpCRUD.Domain.Services.CustomerModels
                     .GetRequestedOrNewNumber(dto.Number);
 
                 processedCustomer = new Customer(
-                    id: dto.Id,
+                    id: new CustomerId(dto.Id),
                     number: number,
                     name: dto.Name,
                     organizationNumber: dto.OrganizationNumber,
@@ -64,7 +63,7 @@ namespace SharpCRUD.Domain.Services.CustomerModels
 
             foreach(var address in dto.Addresses ?? new List<CustomerAddressDto>())
             {
-                address.CustomerId = processedCustomer.Id;
+                address.CustomerId = processedCustomer.Id.Value;
                 var addressAssembleResult = await _addressAssembler.Assemble(address);
                 processedAddresses.Add(addressAssembleResult.Address);
             }

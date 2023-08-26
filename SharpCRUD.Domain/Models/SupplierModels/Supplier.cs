@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpCRUD.DataAccess.Models.SupplierModels
+namespace SharpCRUD.Domain.Models.SupplierModels
 {
     public class Supplier : BaseEntity
     {

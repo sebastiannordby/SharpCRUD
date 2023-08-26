@@ -1,5 +1,5 @@
-﻿using SharpCRUD.DataAccess;
-using SharpCRUD.DataAccess.Models.CustomerModels;
+﻿using SharpCRUD.Domain;
+using SharpCRUD.Domain.Models.CustomerModels;
 using SharpCRUD.Domain.Exceptions;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Shared.CustomerModels;
@@ -15,13 +15,13 @@ namespace SharpCRUD.Domain.Services.CustomerModels
     internal class CustomerSaveService : ISaveService<CustomerDto>
     {
         private readonly IAssembleService<CustomerAssembleResult, CustomerDto> _assembleCustomerService;
-        private readonly IValidateService<Customer, CustomerValidationResult> _validateCustomerService;
+        private readonly IValidateService<CustomerAssembleResult, CustomerValidationResult> _validateCustomerService;
         private readonly ISaveEntity<Customer> _saveCustomerEntityService;
         private readonly SharpCrudContext _dbContext;
 
         public CustomerSaveService(
             IAssembleService<CustomerAssembleResult, CustomerDto> assembleCustomerService,
-            IValidateService<Customer, CustomerValidationResult> validateCustomerService,
+            IValidateService<CustomerAssembleResult, CustomerValidationResult> validateCustomerService,
             ISaveEntity<Customer> saveCustomerEntityService,
             SharpCrudContext dbContext)
         {
@@ -36,16 +36,17 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             if (model == null) 
                 throw new ArgumentNullException("Model cannot be null.");
 
-            var assembleResult = await _assembleCustomerService.Assemble(model);
-            var customer = assembleResult.Customer;
-            var customerValidationResult = await _validateCustomerService.Validate(customer);
-
+            var assembleResult = await _assembleCustomerService
+                .Assemble(model);
+          
+            var customerValidationResult = await _validateCustomerService
+                .Validate(assembleResult);
             if (!customerValidationResult.IsSuccessful)
                 throw new SharpCRUDValidationException(customerValidationResult);
 
-            await _saveCustomerEntityService.Save(customer);
+            await _saveCustomerEntityService.Save(assembleResult.Customer);
 
-            return customer.Id;
+            return assembleResult.Customer.Id.Value;
         }
     }
 }

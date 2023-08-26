@@ -1,5 +1,5 @@
 using Microsoft.Identity.Client;
-using SharpCRUD.DataAccess;
+using SharpCRUD.Domain;
 using SharpCRUD.Domain;
 
 namespace SharpCRUD.RestAPI

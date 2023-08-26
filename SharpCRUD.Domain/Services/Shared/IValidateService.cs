@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.Domain.Services.Shared
 {
-    internal interface IValidateService<TEntity, TValidationResult>
+    internal interface IValidateService<TAssembleResult, TValidationResult>
         where TValidationResult : SharpCRUDValidationResult
+        where TAssembleResult : AssembleResult
     {
-        Task<TValidationResult> Validate(TEntity entity);
+        Task<TValidationResult> Validate(TAssembleResult entity);
     }
 }

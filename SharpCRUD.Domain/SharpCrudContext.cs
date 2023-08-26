@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using SharpCRUD.DataAccess.Models.CustomerModels;
-using SharpCRUD.DataAccess.Models.SupplierModels;
+using SharpCRUD.Domain.Models.CustomerModels;
+using SharpCRUD.Domain.Models.SupplierModels;
 
-namespace SharpCRUD.DataAccess
+namespace SharpCRUD.Domain
 {
     public class SharpCrudContext : DbContext
     {

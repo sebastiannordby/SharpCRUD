@@ -1,5 +1,5 @@
-﻿using SharpCRUD.DataAccess;
-using SharpCRUD.DataAccess.Models.CustomerModels;
+﻿using SharpCRUD.Domain;
+using SharpCRUD.Domain.Models.CustomerModels;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Shared.Models.CustomerModels;
 using System;
@@ -24,9 +24,11 @@ namespace SharpCRUD.Domain.Services.CustomerModels.Address
             _dbContext = dbContext;
         }
 
-        public Task<CustomerAddressAssembleResult> Assemble(CustomerAddressDto dto)
+        public Task<CustomerAddressAssembleResult> Assemble(
+            CustomerAddressDto dto)
         {
-            var processedEntity = _dbContext.CustomerAddresses.Find(dto.Id);
+            var processedEntity = _dbContext.CustomerAddresses
+                .FirstOrDefault(x => x.Id.Value == dto.Id);
 
             if (processedEntity != null) 
             {
@@ -41,8 +43,8 @@ namespace SharpCRUD.Domain.Services.CustomerModels.Address
             else
             {
                 processedEntity = new CustomerAddress(
-                    id: dto.Id,
-                    customerId: dto.CustomerId,
+                    id: new CustomerAddressId(dto.Id),
+                    customerId: new CustomerId(dto.CustomerId),
                     addressLine1: dto.AddressLine1,
                     addressLine2: dto.AddressLine2,
                     addressLine3: dto.AddressLine3,

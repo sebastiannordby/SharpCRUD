@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,10 @@ namespace SharpCRUD.Shared.Validation.CustomerModels
 {
     public class CustomerValidationResult : SharpCRUDValidationResult
     {
+        public CustomerValidationResult(
+            List<ValidationFailure> failures) : base(failures)
+        {
 
+        }
     }
 }

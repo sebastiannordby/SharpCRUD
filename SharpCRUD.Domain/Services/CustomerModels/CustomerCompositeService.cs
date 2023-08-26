@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SharpCRUD.DataAccess;
+using SharpCRUD.Domain;
+using SharpCRUD.Domain.Models.CustomerModels;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Shared.Models.CustomerModels;
 using System;
@@ -22,13 +23,16 @@ namespace SharpCRUD.Domain.Services.CustomerModels
 
         public Task<CustomerCompositeDto> Find(Guid id)
         {
-            var customer = _dbContext.Customers.AsNoTracking().FirstOrDefault(x => x.Id == id);
+            var customerId = new CustomerId(id);
+            var customer = _dbContext.Customers
+                .AsNoTracking()
+                .FirstOrDefault(x => x.Id == customerId);
             if (customer == null)
                 throw new ArgumentException($"No Customer with given id({id})");
 
             return Task.FromResult(new CustomerCompositeDto()
             {
-                Id = customer.Id,
+                Id = customer.Id.Value,
                 Number = customer.Number,
                 Name = customer.Name
             });

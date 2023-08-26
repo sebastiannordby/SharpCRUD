@@ -4,10 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpCRUD.DataAccess.Models.CustomerModels
+namespace SharpCRUD.Domain.Models.CustomerModels
 {
+    public class CustomerId
+    {
+        public Guid Value { get; private set; }
+
+        public CustomerId(Guid value) 
+        { 
+            Value = value;
+        }
+    }
+
     public class Customer : BaseEntity
     {
+        public CustomerId Id { get; private set; }
         public int Number { get; private set; }
         public string Name { get; private set; }
         public string OrganizationNumber { get; private set; }
@@ -20,12 +31,13 @@ namespace SharpCRUD.DataAccess.Models.CustomerModels
         }
 
         public Customer(
-            Guid id,
+            CustomerId id,
             int number,
             string name,
             string organizationNumber,
-            string phoneNumber) : base(id)
+            string phoneNumber) : base()
         {
+            Id = id;
             Number = number;
             Name = name;
             OrganizationNumber = organizationNumber;

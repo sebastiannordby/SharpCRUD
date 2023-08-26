@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.Design;
 using Microsoft.Extensions.Configuration;
 using SharpCRUD.Testing.Shared;
-using SharpCRUD.DataAccess;
+using SharpCRUD.Domain;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace SharpCRUD.DataAcess.Tests

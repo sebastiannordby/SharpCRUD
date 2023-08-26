@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SharpCRUD.DataAccess\SharpCRUD.DataAccess.csproj" />
     <ProjectReference Include="..\SharpCRUD.Domain\SharpCRUD.Domain.csproj" />
   </ItemGroup>
 

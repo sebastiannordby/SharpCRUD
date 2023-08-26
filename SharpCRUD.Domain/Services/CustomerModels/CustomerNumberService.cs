@@ -1,5 +1,5 @@
-﻿using SharpCRUD.DataAccess;
-using SharpCRUD.DataAccess.Models.CustomerModels;
+﻿using SharpCRUD.Domain;
+using SharpCRUD.Domain.Models.CustomerModels;
 using SharpCRUD.Domain.Extensions;
 using SharpCRUD.Domain.Services.Shared;
 using System;

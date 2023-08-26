@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SharpCRUD.DataAccess;
+using SharpCRUD.Domain;
 using SharpCRUD.Domain;
 using System;
 using SharpCRUD.Domain.UseCases;
