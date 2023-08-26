@@ -14,6 +14,11 @@ namespace SharpCRUD.Domain.Models.CustomerModels
         {
             Value = value;
         }
+
+        internal static CustomerAddressId Create()
+        {
+            return new(Guid.NewGuid());
+        }
     }
 
     public class CustomerAddress : BaseEntity

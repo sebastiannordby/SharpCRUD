@@ -1,7 +1,6 @@
 ﻿using SharpCRUD.Domain;
 using SharpCRUD.Domain.Models.CustomerModels;
 using SharpCRUD.Domain.Extensions;
-using SharpCRUD.Domain.Services.CustomerModels.Address;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Shared.CustomerModels;
 using SharpCRUD.Shared.Models.CustomerModels;
@@ -10,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SharpCRUD.Domain.Services.CustomerModels
 {
@@ -29,26 +29,34 @@ namespace SharpCRUD.Domain.Services.CustomerModels
     {
         private readonly SharpCrudContext _dbContext;
         private readonly CustomerNumberService _customerNumberService;
-        private readonly IAssembleService<CustomerAddressAssembleResult, CustomerAddressDto> _addressAssembler;
 
         public CustomerAssembleService(
             SharpCrudContext dbContext, 
-            CustomerNumberService customerNumberService,
-            IAssembleService<CustomerAddressAssembleResult, CustomerAddressDto> addressAssembler)
+            CustomerNumberService customerNumberService)
         {
             _dbContext = dbContext;
             _customerNumberService = customerNumberService;
-            _addressAssembler = addressAssembler;
         }
 
         public async Task<CustomerAssembleResult> Assemble(CustomerDto dto)
         {
+            var (processedCustomer, isNewCustomer) = await ProcessCustomer(dto);
+            var processedAddresses = await ProcessAddresses(dto, processedCustomer, isNewCustomer);
+
+            return new CustomerAssembleResult(
+                customer: new(processedCustomer, isNewCustomer),
+                addresses: processedAddresses);
+        }
+
+        private async Task<(Customer processedCustomer, bool isNewCustomer)> ProcessCustomer(
+            CustomerDto dto)
+        {
             var processedCustomer = _dbContext.Customers
                 .FirstOrDefault(x => x.Id.Value == dto.Id);
-            var isNew = processedCustomer == null;
-            var processedAddresses = new List<EntityAssembleResult<CustomerAddress>>();
+            var isNewCustomer = processedCustomer == null;
 
-            if(processedCustomer != null)
+
+            if (processedCustomer != null)
             {
                 processedCustomer.Update(
                     name: dto.Name,
@@ -60,25 +68,56 @@ namespace SharpCRUD.Domain.Services.CustomerModels
                 var number = await _customerNumberService
                     .GetRequestedOrNewNumber(dto.Number);
 
-                processedCustomer = new Customer(
-                    id: new CustomerId(dto.Id),
+                processedCustomer = new(
+                    id: new(dto.Id ?? Guid.NewGuid()),
                     number: number,
                     name: dto.Name,
                     organizationNumber: dto.OrganizationNumber,
-                    phoneNumber: dto.PhoneNumber
-                );
+                    phoneNumber: dto.PhoneNumber);
             }
 
-            foreach(var address in dto.Addresses ?? new List<CustomerAddressDto>())
+            return (processedCustomer, isNewCustomer);
+        }
+
+        private async Task<List<EntityAssembleResult<CustomerAddress>>> ProcessAddresses(
+            CustomerDto dto, Customer processedCustomer, bool isNewCustomer)
+        {
+            var processedAddresses = new List<EntityAssembleResult<CustomerAddress>>();
+
+            foreach (var address in dto.Addresses ?? new())
             {
                 address.CustomerId = processedCustomer.Id.Value;
-                var addressAssembleResult = await _addressAssembler.Assemble(address);
-                processedAddresses.Add(addressAssembleResult.Address);
+
+                var processedAddress = !isNewCustomer && address.Id.HasValue ?
+                    await _dbContext.CustomerAddresses
+                        .FirstOrDefaultAsync(x => x.Id.Value == address.Id.Value) : null;
+                var isNewAddress = processedAddress == null;
+
+                if (processedAddress != null)
+                {
+                    processedAddress.Update(
+                        addressLine1: address.AddressLine1,
+                        addressLine2: address.AddressLine2,
+                        addressLine3: address.AddressLine3,
+                        postalCode: address.PostalCode,
+                        postalLocality: address.PostalLocality);
+                }
+                else
+                {
+                    processedAddress = new(
+                        id: new(address.Id ?? Guid.NewGuid()),
+                        customerId: processedCustomer.Id,
+                        addressLine1: address.AddressLine1,
+                        addressLine2: address.AddressLine2,
+                        addressLine3: address.AddressLine3,
+                        postalCode: address.PostalCode,
+                        postalLocality: address.PostalLocality);
+                }
+
+                processedAddresses.Add(new(processedAddress, isNewAddress));
             }
 
-            return new CustomerAssembleResult(
-                customer: new(processedCustomer, isNew),
-                addresses: processedAddresses);
+            return processedAddresses;
         }
     }
 }

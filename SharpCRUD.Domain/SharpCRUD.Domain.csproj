@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Services\CustomerModels\Address\" />
     <Folder Include="UseCases\CustomerModels\" />
   </ItemGroup>
 

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SharpCRUD.Domain.Models.CustomerModels;
-using SharpCRUD.Domain.Services.CustomerModels.Address;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Shared.CustomerModels;
 using SharpCRUD.Shared.Models.CustomerModels;
@@ -23,9 +22,6 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             services.AddScoped<IValidateService<CustomerAssembleResult, CustomerValidationResult>, CustomerValidateService>();
             services.AddScoped<ICompositeService<CustomerCompositeDto>, CustomerCompositeService>();
             services.AddScoped<IEntityNumberService<Customer>, CustomerNumberService>();
-
-            // CustomerAddress
-            services.AddScoped<IAssembleService<CustomerAddressAssembleResult, CustomerAddressDto>, CustomerAddressAssembleService>();
 
             return services;
         }

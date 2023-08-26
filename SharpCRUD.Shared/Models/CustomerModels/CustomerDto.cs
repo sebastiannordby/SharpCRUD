@@ -10,34 +10,66 @@ namespace SharpCRUD.Shared.CustomerModels
 {
     public class CustomerDto : BaseDto
     {
-        /// <summary>
-        /// Readonly field. Automatically generated.
-        /// </summary>
+        public Guid? Id { get; set; }
         public int Number { get; set; } 
-
-        /// <summary>
-        /// Name of the customer.
-        /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// Customers organization number.
-        /// </summary>
         public string OrganizationNumber { get; set; }
-       
-        /// <summary>
-        /// Main phone number.
-        /// </summary>
         public string PhoneNumber { get; set; }
-        
-        /// <summary>
-        /// Readonly field. Standalone function for locking and unlocking.
-        /// </summary>
-        public bool IsLocked { get; set; }
+        public List<CustomerDto.Address> Addresses { get; set; }
 
-        /// <summary>
-        /// Addresses/locations owned by the customer.
-        /// </summary>
-        public List<CustomerAddressDto> Addresses { get; set; }
+        public CustomerDto() 
+        { 
+        
+        }
+
+        public CustomerDto(
+            Guid id,
+            int number,
+            string name,
+            string organizationNumber,
+            string phoneNumber,
+            List<CustomerDto.Address> addresses)
+        {
+            Id = id;
+            Number = number;
+            Name = name;
+            OrganizationNumber = organizationNumber;
+            PhoneNumber = phoneNumber;
+            Addresses = addresses;
+        }
+
+        public class Address
+        {
+            public Guid? Id { get; set; }
+            public Guid CustomerId { get; set; }
+            public string AddressLine1 { get; set; }
+            public string AddressLine2 { get; set; }
+            public string AddressLine3 { get; set; }
+            public string PostalCode { get; set; }
+            public string PostalLocality { get; set; }
+
+            public Address()
+            {
+
+            }
+
+            public Address(
+                Guid id,
+                Guid customerId,
+                string addressLine1,
+                string addressLine2,
+                string addressLine3,
+                string postalCode,
+                string postalLocality)
+            {
+                Id = id;
+                CustomerId = customerId;
+                AddressLine1 = addressLine1;
+                AddressLine2 = addressLine2;
+                AddressLine3 = addressLine3;
+                PostalCode = postalCode;
+                PostalLocality = postalLocality;
+            }
+        }
     }
 }

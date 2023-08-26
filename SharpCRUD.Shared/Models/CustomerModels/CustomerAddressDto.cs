@@ -14,5 +14,6 @@ namespace SharpCRUD.Shared.Models.CustomerModels
         public string AddressLine3 { get; set; }
         public string PostalCode { get; set; }
         public string PostalLocality { get; set; }
+
     }
 }
