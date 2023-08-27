@@ -1,4 +1,4 @@
-# SharpCRUD 🧙 
+# SharpCRUD 🧙👓✒️🆑
 ## A better way to structure your CRUD-project with validation.
 
 Have you ever struggled with how to structure your CRUD application? Well, me too. 
