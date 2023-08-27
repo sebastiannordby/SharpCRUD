@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SharpCRUD.Communication\SharpCRUD.Communication.csproj" />
+    <ProjectReference Include="..\SharpCRUD.Library\SharpCRUD.Library.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -6,14 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpCRUD.API
+namespace SharpCRUD.Communication
 {
     public static class SharpCRUDAPIInstaller
     {
-        public static IServiceCollection AddSharpCRUDApi(this IServiceCollection services)
+        public static IServiceCollection AddSharpCRUDCommunication(this IServiceCollection services)
         {
             return services
-                .AddHttpRepositories()
                 .AddServices();
         }
     }

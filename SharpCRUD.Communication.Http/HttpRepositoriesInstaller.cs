@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SharpCRUD.Communication.Implementation.Repositories.Customer;
+using SharpCRUD.Communication.Http.Repositories.Customer;
 using SharpCRUD.Communication.Repositories.Customer;
 using SharpCRUD.Communication.Repositories.CustomerModels;
 using System;
@@ -8,11 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpCRUD.Communication.Implementation
+namespace SharpCRUD.Communication.Http
 {
-    internal static class HttpRepositoriesInstaller
+    public static class HttpRepositoriesInstaller
     {
-        internal static IServiceCollection AddHttpRepositories(this IServiceCollection services)
+        public static IServiceCollection AddSharpCRUDHttpRepositories(this IServiceCollection services)
         {
             return services
                 .AddScoped<ICustomerCompositeRepository, HttpCustomerCompositeRepository>()

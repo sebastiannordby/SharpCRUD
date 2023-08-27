@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCRUD.DataAccess", "Sha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCRUD.Library", "SharpCRUD.Library\SharpCRUD.Library.csproj", "{1CB08107-9DD7-4AE5-A3D2-D0FF70AC65D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCRUD.Communication.Http", "SharpCRUD.Communication.Http\SharpCRUD.Communication.Http.csproj", "{6CEC3ABF-C181-4F94-944B-34F73C3197F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +86,10 @@ Global
 		{1CB08107-9DD7-4AE5-A3D2-D0FF70AC65D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CB08107-9DD7-4AE5-A3D2-D0FF70AC65D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CB08107-9DD7-4AE5-A3D2-D0FF70AC65D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CEC3ABF-C181-4F94-944B-34F73C3197F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CEC3ABF-C181-4F94-944B-34F73C3197F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CEC3ABF-C181-4F94-944B-34F73C3197F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CEC3ABF-C181-4F94-944B-34F73C3197F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +107,7 @@ Global
 		{38E74DE5-A080-4C1C-9805-DE17B6241B96} = {444D8A6B-6953-45DC-BAC8-C463B7811069}
 		{46679CC9-A1A5-46E9-9F59-42EC204F1159} = {444D8A6B-6953-45DC-BAC8-C463B7811069}
 		{1CB08107-9DD7-4AE5-A3D2-D0FF70AC65D9} = {444D8A6B-6953-45DC-BAC8-C463B7811069}
+		{6CEC3ABF-C181-4F94-944B-34F73C3197F2} = {FDC692C0-D816-418A-9F14-FB519DB2F2E2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA2F1EC0-1FAA-4C58-B30E-2308F5D7DB35}

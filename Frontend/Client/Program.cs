@@ -1,6 +1,8 @@
 using Frontend;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using SharpCRUD.Communication;
+using SharpCRUD.Communication.Http;
 
 namespace Frontend
 {
@@ -13,6 +15,8 @@ namespace Frontend
             builder.RootComponents.Add<HeadOutlet>("head::after");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddSharpCRUDCommunication();
+            builder.Services.AddSharpCRUDHttpRepositories();
 
             await builder.Build().RunAsync();
         }

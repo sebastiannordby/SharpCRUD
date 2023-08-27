@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.Communication.Repositories.CustomerModels
 {
-    internal interface ICustomerCompositeRepository
+    public interface ICustomerCompositeRepository
     {
         Task<Guid> Save(CustomerCompositeDto customer);
     }

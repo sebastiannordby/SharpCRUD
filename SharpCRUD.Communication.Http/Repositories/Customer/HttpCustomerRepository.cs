@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpCRUD.Communication.Implementation.Repositories.Customer
+namespace SharpCRUD.Communication.Http.Repositories.Customer
 {
     internal sealed class HttpCustomerRepository : ICustomerRepository
     {
