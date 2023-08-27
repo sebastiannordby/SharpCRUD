@@ -16,12 +16,12 @@ Coming soon...
 
 ## How is this project structured?
 
-### API
+### API - Backend
 - The API should handle the domain/business logic
 - The domain logic should be separated from the API gateway
 - The gateway handles a http request and invokes domain logic
 
-### Communication/Consumption
+### Communication - Layer between frontend and backend
 - Conserned with how the frontend should communicate with the API
 - Could be published as a NuGet for api consumption
 
