@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.Identity.Client;
 using SharpCRUD.Domain;
 using SharpCRUD.Domain;
@@ -17,7 +19,9 @@ namespace SharpCRUD.RestAPI
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddDataAccessLayer(sqlConnectionString);
+            builder.Services.ConfigureEntityFramework(options => { 
+               options.UseSqlServer(sqlConnectionString);
+            });
             builder.Services.AddDomainLayer();
 
             var app = builder.Build();

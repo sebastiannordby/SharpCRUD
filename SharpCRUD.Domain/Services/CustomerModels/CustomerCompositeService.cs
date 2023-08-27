@@ -21,21 +21,39 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             _dbContext = dbContext;
         }
 
-        public Task<CustomerCompositeDto> Find(Guid id)
+        public async Task<CustomerCompositeDto> Find(Guid customerId)
         {
-            var customerId = new CustomerId(id);
-            var customer = _dbContext.Customers
+            var customerQuery = _dbContext.Customers
                 .AsNoTracking()
-                .FirstOrDefault(x => x.Id == customerId);
-            if (customer == null)
-                throw new ArgumentException($"No Customer with given id({id})");
+                .Where(x => x.Id == customerId);
+            if (!customerQuery.Any())
+                throw new ArgumentException($"No Customer with given id({customerId})");
 
-            return Task.FromResult(new CustomerCompositeDto()
-            {
-                Id = customer.Id.Value,
-                Number = customer.Number,
-                Name = customer.Name
-            });
+            return await (
+                from customer in customerQuery
+                let addresses = (
+                    from address in _dbContext.CustomerAddresses
+                        .AsNoTracking()
+                        .Where(x => x.CustomerId == customer.Id)
+
+                    select new CustomerCompositeDto.Address(
+                        address.Id,
+                        address.CustomerId,
+                        address.AddressLine1,
+                        address.AddressLine2,
+                        address.AddressLine3,
+                        address.PostalCode,
+                        address.PostalLocality)
+                ).ToList()
+
+                select new CustomerCompositeDto(
+                    customer.Id,
+                    customer.Number,
+                    customer.Name,
+                    customer.OrganizationNumber,
+                    customer.PhoneNumber,
+                    addresses)
+            ).FirstOrDefaultAsync();
         }
     }
 }

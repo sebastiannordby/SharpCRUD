@@ -6,25 +6,10 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.Domain.Models.CustomerModels
 {
-    public class CustomerAddressId
-    {
-        public Guid Value { get; private set; }
-
-        public CustomerAddressId(Guid value) 
-        {
-            Value = value;
-        }
-
-        internal static CustomerAddressId Create()
-        {
-            return new(Guid.NewGuid());
-        }
-    }
-
     public class CustomerAddress : BaseEntity
     {
-        public CustomerAddressId Id { get; set; }
-        public CustomerId CustomerId { get; private set; }
+        public Guid Id { get; set; }
+        public Guid CustomerId { get; private set; }
         public string AddressLine1 { get; private set; }
         public string AddressLine2 { get; private set; }
         public string AddressLine3 { get; private set; }
@@ -37,8 +22,8 @@ namespace SharpCRUD.Domain.Models.CustomerModels
         }
 
         public CustomerAddress(
-            CustomerAddressId id,
-            CustomerId customerId,
+            Guid id,
+            Guid customerId,
             string addressLine1,
             string addressLine2, 
             string addressLine3, 

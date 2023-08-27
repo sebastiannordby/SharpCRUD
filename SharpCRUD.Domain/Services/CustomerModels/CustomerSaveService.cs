@@ -41,7 +41,22 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             if (!validationResult.IsSuccessful)
                 throw new SharpCRUDValidationException(validationResult);
 
-            return assembleResult.Customer.Model.Id.Value;
+            if (assembleResult.Customer.IsNew)
+                await _dbContext.Customers.AddAsync(assembleResult.Customer.Model);
+            else
+                _dbContext.Customers.Update(assembleResult.Customer.Model);
+
+            foreach(var address in assembleResult.Addresses)
+            {
+                if (address.IsNew)
+                    await _dbContext.CustomerAddresses.AddAsync(address.Model);
+                else
+                    _dbContext.CustomerAddresses.Update(address.Model);
+            }
+
+            await _dbContext.SaveChangesAsync();
+
+            return assembleResult.Customer.Model.Id;
         }
     }
 }

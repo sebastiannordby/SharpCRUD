@@ -19,5 +19,25 @@ namespace SharpCRUD.Domain
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Customer>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+                entity.HasMany<CustomerAddress>();
+            });
+
+            modelBuilder.Entity<Supplier>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+            });
+
+            modelBuilder.Entity<CustomerAddress>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+            });
+
+        }
     }
 }

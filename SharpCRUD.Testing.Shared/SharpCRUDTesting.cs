@@ -4,6 +4,7 @@ using SharpCRUD.Domain;
 using SharpCRUD.Domain;
 using System;
 using SharpCRUD.Domain.UseCases;
+using Microsoft.EntityFrameworkCore;
 
 namespace SharpCRUD.Testing.Shared
 {
@@ -18,7 +19,12 @@ namespace SharpCRUD.Testing.Shared
 
             var services = new ServiceCollection();
 
-            services.AddTestDataAccessLayer(nameof(SharpCRUDTesting));
+            services.ConfigureEntityFramework(options =>
+            {
+                options.UseInMemoryDatabase(nameof(SharpCRUDTesting), b => {
+                    b.EnableNullChecks(false);
+                });
+            });
             services.AddDomainLayer();
             services.AddDomainUseCases();
 

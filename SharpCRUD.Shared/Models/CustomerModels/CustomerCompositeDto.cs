@@ -16,6 +16,28 @@ namespace SharpCRUD.Shared.Models.CustomerModels
         public string PhoneNumber { get; set; }
         public List<CustomerCompositeDto.Address> Addresses { get; set; }
 
+        public CustomerCompositeDto() 
+        { 
+            
+        }
+
+        public CustomerCompositeDto(
+            Guid id,
+            int number,
+            string name,
+            string organizationNumber,
+            string phoneNumber,
+            List<Address> addresses)
+        {
+            Id = id;
+            Number = number;
+            Name = name;
+            OrganizationNumber = organizationNumber;
+            PhoneNumber = phoneNumber;
+            Addresses = addresses;
+        }
+
+
         public override CustomerDto Composite()
         {
             return new(

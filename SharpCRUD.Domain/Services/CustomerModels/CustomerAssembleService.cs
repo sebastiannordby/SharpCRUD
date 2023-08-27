@@ -28,11 +28,11 @@ namespace SharpCRUD.Domain.Services.CustomerModels
     internal class CustomerAssembleService : IAssembleService<CustomerAssembleResult, CustomerDto>
     {
         private readonly SharpCrudContext _dbContext;
-        private readonly CustomerNumberService _customerNumberService;
+        private readonly IEntityNumberService<Customer> _customerNumberService;
 
         public CustomerAssembleService(
             SharpCrudContext dbContext, 
-            CustomerNumberService customerNumberService)
+            IEntityNumberService<Customer> customerNumberService)
         {
             _dbContext = dbContext;
             _customerNumberService = customerNumberService;
@@ -52,7 +52,7 @@ namespace SharpCRUD.Domain.Services.CustomerModels
             CustomerDto dto)
         {
             var processedCustomer = _dbContext.Customers
-                .FirstOrDefault(x => x.Id.Value == dto.Id);
+                .FirstOrDefault(x => x.Id == dto.Id);
             var isNewCustomer = processedCustomer == null;
 
 
@@ -69,7 +69,7 @@ namespace SharpCRUD.Domain.Services.CustomerModels
                     .GetRequestedOrNewNumber(dto.Number);
 
                 processedCustomer = new(
-                    id: new(dto.Id ?? Guid.NewGuid()),
+                    id: dto.Id ?? Guid.NewGuid(),
                     number: number,
                     name: dto.Name,
                     organizationNumber: dto.OrganizationNumber,
@@ -86,11 +86,9 @@ namespace SharpCRUD.Domain.Services.CustomerModels
 
             foreach (var address in dto.Addresses ?? new())
             {
-                address.CustomerId = processedCustomer.Id.Value;
-
                 var processedAddress = !isNewCustomer && address.Id.HasValue ?
                     await _dbContext.CustomerAddresses
-                        .FirstOrDefaultAsync(x => x.Id.Value == address.Id.Value) : null;
+                        .FirstOrDefaultAsync(x => x.Id == address.Id.Value) : null;
                 var isNewAddress = processedAddress == null;
 
                 if (processedAddress != null)
@@ -105,7 +103,7 @@ namespace SharpCRUD.Domain.Services.CustomerModels
                 else
                 {
                     processedAddress = new(
-                        id: new(address.Id ?? Guid.NewGuid()),
+                        id: address.Id ?? Guid.NewGuid(),
                         customerId: processedCustomer.Id,
                         addressLine1: address.AddressLine1,
                         addressLine2: address.AddressLine2,

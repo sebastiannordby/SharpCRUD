@@ -6,19 +6,9 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.Domain.Models.CustomerModels
 {
-    public class CustomerId
-    {
-        public Guid Value { get; private set; }
-
-        public CustomerId(Guid value) 
-        { 
-            Value = value;
-        }
-    }
-
     public class Customer : BaseEntity
     {
-        public CustomerId Id { get; private set; }
+        public Guid Id { get; private set; }
         public int Number { get; private set; }
         public string Name { get; private set; }
         public string OrganizationNumber { get; private set; }
@@ -31,7 +21,7 @@ namespace SharpCRUD.Domain.Models.CustomerModels
         }
 
         public Customer(
-            CustomerId id,
+            Guid id,
             int number,
             string name,
             string organizationNumber,

@@ -19,29 +19,11 @@ namespace SharpCRUD.Domain
                 .AddDomainLayerServices();
         }
 
-        public static IServiceCollection AddDataAccessLayer(
-            this IServiceCollection services, string sqlConnectionString)
+        public static IServiceCollection ConfigureEntityFramework(
+            this IServiceCollection services, 
+            Action<DbContextOptionsBuilder> ContextDelegate)
         {
-            services.AddDbContextFactory<SharpCrudContext>(options =>
-            {
-                options.UseSqlServer(sqlConnectionString);
-            });
-
-            return services;
-        }
-
-        public static IServiceCollection AddTestDataAccessLayer(
-            this IServiceCollection services, string testDatabaseName)
-        {
-            services.AddDbContextFactory<SharpCrudContext>(options =>
-            {
-                options.UseInMemoryDatabase(testDatabaseName, b => {
-
-                    b.EnableNullChecks(false);
-                });
-            });
-
-            return services;
+            return services.AddDbContextFactory<SharpCrudContext>(ContextDelegate);
         }
     }
 }
