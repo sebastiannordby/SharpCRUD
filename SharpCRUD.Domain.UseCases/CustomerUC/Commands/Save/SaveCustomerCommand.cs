@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpCRUD.Domain.UseCases.CustomerModels.Commands.Save
+namespace SharpCRUD.Domain.UseCases.CustomerUC.Commands.Save
 {
     public sealed record SaveCustomerCommand(CustomerDto Customer) : IRequest<Guid>;
 }
