@@ -1,10 +1,11 @@
 ﻿using MediatR;
 using SharpCRUD.Domain.Services.Shared;
+using SharpCRUD.Domain.UseCases.Shared;
 using SharpCRUD.Shared.CustomerModels;
 
 namespace SharpCRUD.Domain.UseCases.CustomerUC.Commands.Save
 {
-    public class SaveCustomerCommandHandler : IRequestHandler<SaveCustomerCommand, Guid>
+    public class SaveCustomerCommandHandler : ICommandHandler<SaveCustomerCommand, Guid>
     {
         private readonly ISaveService<CustomerDto> _service;
 

@@ -8,10 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SharpCRUD.Domain.UseCases\SharpCRUD.Domain.UseCases.csproj" />
     <ProjectReference Include="..\SharpCRUD.Domain\SharpCRUD.Domain.csproj" />
   </ItemGroup>
 

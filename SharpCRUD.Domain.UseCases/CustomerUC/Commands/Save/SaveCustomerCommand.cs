@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SharpCRUD.Domain.UseCases.Shared;
 using SharpCRUD.Shared.CustomerModels;
 using System;
 using System.Collections.Generic;
@@ -8,5 +9,5 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.Domain.UseCases.CustomerUC.Commands.Save
 {
-    public sealed record SaveCustomerCommand(CustomerDto Customer) : IRequest<Guid>;
+    public sealed record SaveCustomerCommand(CustomerDto Customer) : ICommand<Guid>;
 }
