@@ -1,6 +1,8 @@
 # SharpCRUD 🧙👓✒️🆑
 ## A better way to structure your CRUD-project with validation.
 
+🌟🌟🌟**If you like this concept make sure to give it a star**🌟🌟🌟
+
 Have you ever struggled with how to structure your CRUD application? Well, me too. 
 After countless hours spent on research i could not find and optimal solution that will scales well with the complexity.
 There are many good concepts that showcase how to handle these simple operations, but as soon as the complexity and 
@@ -8,8 +10,6 @@ the models become increase, this for some reason seem to fail ⁉️
 
 In this project i will try and fail until i find a suitable solution for my problems, and i hope that some will stuble over this
 and maybe get some inspiration 😎
-
-🌟🌟🌟**If you like this concept make sure to give it a star**🌟🌟🌟
 
 ## How do i run this project?
 Coming soon...
