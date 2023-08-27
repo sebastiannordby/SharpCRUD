@@ -1,0 +1,18 @@
+﻿using SharpCRUD.API.Repositories.CustomerModels;
+using SharpCRUD.Shared.Models.CustomerModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SharpCRUD.API.Implementation.Repositories.Customer
+{
+    internal class HttpCustomerCompositeRepository : ICustomerCompositeRepository
+    {
+        public Task<Guid> Save(CustomerCompositeDto customer)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

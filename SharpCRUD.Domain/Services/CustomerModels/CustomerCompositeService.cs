@@ -38,7 +38,6 @@ namespace SharpCRUD.Domain.Services.CustomerModels
 
                     select new CustomerCompositeDto.Address(
                         address.Id,
-                        address.CustomerId,
                         address.AddressLine1,
                         address.AddressLine2,
                         address.AddressLine3,

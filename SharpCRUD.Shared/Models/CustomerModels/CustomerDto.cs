@@ -23,7 +23,7 @@ namespace SharpCRUD.Shared.CustomerModels
         }
 
         public CustomerDto(
-            Guid id,
+            Guid? id,
             int number,
             string name,
             string organizationNumber,
@@ -41,7 +41,6 @@ namespace SharpCRUD.Shared.CustomerModels
         public class Address
         {
             public Guid? Id { get; set; }
-            public Guid CustomerId { get; set; }
             public string AddressLine1 { get; set; }
             public string AddressLine2 { get; set; }
             public string AddressLine3 { get; set; }
@@ -54,8 +53,7 @@ namespace SharpCRUD.Shared.CustomerModels
             }
 
             public Address(
-                Guid id,
-                Guid customerId,
+                Guid? id,
                 string addressLine1,
                 string addressLine2,
                 string addressLine3,
@@ -63,7 +61,6 @@ namespace SharpCRUD.Shared.CustomerModels
                 string postalLocality)
             {
                 Id = id;
-                CustomerId = customerId;
                 AddressLine1 = addressLine1;
                 AddressLine2 = addressLine2;
                 AddressLine3 = addressLine3;

@@ -9,7 +9,7 @@ namespace SharpCRUD.Shared.Models.CustomerModels
 {
     public class CustomerCompositeDto : CompositeDto<CustomerDto>
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
         public int Number { get; set; }
         public string Name { get; set; }
         public string OrganizationNumber { get; set; }
@@ -22,7 +22,7 @@ namespace SharpCRUD.Shared.Models.CustomerModels
         }
 
         public CustomerCompositeDto(
-            Guid id,
+            Guid? id,
             int number,
             string name,
             string organizationNumber,
@@ -53,8 +53,7 @@ namespace SharpCRUD.Shared.Models.CustomerModels
 
         public class Address
         {
-            public Guid Id { get; set; }
-            public Guid CustomerId { get; set; }
+            public Guid? Id { get; set; }
             public string AddressLine1 { get; set; }
             public string AddressLine2 { get; set; }
             public string AddressLine3 { get; set; }
@@ -67,8 +66,7 @@ namespace SharpCRUD.Shared.Models.CustomerModels
             }
 
             public Address(
-                Guid id,
-                Guid customerId,
+                Guid? id,
                 string addressLine1,
                 string addressLine2,
                 string addressLine3,
@@ -76,7 +74,6 @@ namespace SharpCRUD.Shared.Models.CustomerModels
                 string postalLocality)
             {
                 Id = id;
-                CustomerId = customerId;
                 AddressLine1 = addressLine1;
                 AddressLine2 = addressLine2;
                 AddressLine3 = addressLine3;
@@ -88,7 +85,6 @@ namespace SharpCRUD.Shared.Models.CustomerModels
             {
                 return new(
                     id: Id,
-                    customerId: CustomerId,
                     addressLine1: AddressLine1,
                     addressLine2: AddressLine2,
                     addressLine3: AddressLine3,
