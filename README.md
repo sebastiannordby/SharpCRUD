@@ -2,7 +2,7 @@
 ## A better way to structure your CRUD-project with validation.
 
 Have you ever struggled with how to structure your CRUD application? Well, me too. 
-After countless hours spent on the interweb i could not find and optimal solution that will scale well.
+After countless hours spent on research i could not find and optimal solution that will scales well with the complexity.
 There are many good concepts that showcase how to handle these simple operations, but as soon as the complexity and 
 the models become increase, this for some reason seem to fail ⁉️
 
