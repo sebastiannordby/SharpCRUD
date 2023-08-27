@@ -1,5 +1,5 @@
 ﻿using SharpCRUD.Communication.Repositories.Customer;
-using SharpCRUD.Shared.CustomerModels;
+using SharpCRUD.Library.CustomerModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

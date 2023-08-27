@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SharpCRUD.Domain.UseCases.CustomerUC.Commands.Save;
-using SharpCRUD.Shared.CustomerModels;
+using SharpCRUD.Library.CustomerModels;
 
 namespace SharpCRUD.RestAPI.Controllers
 {

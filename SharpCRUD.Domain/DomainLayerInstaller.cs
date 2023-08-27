@@ -18,12 +18,5 @@ namespace SharpCRUD.Domain
             return services
                 .AddDomainLayerServices();
         }
-
-        public static IServiceCollection ConfigureEntityFramework(
-            this IServiceCollection services, 
-            Action<DbContextOptionsBuilder> ContextDelegate)
-        {
-            return services.AddDbContextFactory<SharpCrudContext>(ContextDelegate);
-        }
     }
 }

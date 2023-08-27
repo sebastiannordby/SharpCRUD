@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.Identity.Client;
 using SharpCRUD.Domain;
 using SharpCRUD.Domain;
+using SharpCRUD.Infrastructure;
 
 namespace SharpCRUD.RestAPI
 {
@@ -19,7 +20,7 @@ namespace SharpCRUD.RestAPI
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.ConfigureEntityFramework(options => { 
+            builder.Services.AddInfrastructureLayer(options => { 
                options.UseSqlServer(sqlConnectionString);
             });
             builder.Services.AddDomainLayer();

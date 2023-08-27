@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using SharpCRUD.Domain.UseCases.CustomerUC.Commands.Save;
 using SharpCRUD.Domain.UseCases.CustomerUC.Queries.FindComposite;
-using SharpCRUD.Shared.CustomerModels;
+using SharpCRUD.Library.CustomerModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
@@ -14,13 +14,15 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.2" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SharpCRUD.Shared\SharpCRUD.Shared.csproj" />
+    <ProjectReference Include="..\SharpCRUD.DataAccess\SharpCRUD.DataAccess.csproj" />
+    <ProjectReference Include="..\SharpCRUD.Infrastructure\SharpCRUD.Infrastructure.csproj" />
+    <ProjectReference Include="..\SharpCRUD.Library\SharpCRUD.Library.csproj" />
   </ItemGroup>
 
 </Project>

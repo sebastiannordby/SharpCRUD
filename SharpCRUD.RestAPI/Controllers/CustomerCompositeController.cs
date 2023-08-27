@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SharpCRUD.Domain.UseCases.CustomerUC.Queries.FindComposite;
-using SharpCRUD.Shared.Models.CustomerModels;
+using SharpCRUD.Library.Models.CustomerModels;
 
 namespace SharpCRUD.RestAPI.Controllers
 {

@@ -1,5 +1,5 @@
 ﻿using SharpCRUD.Domain;
-using SharpCRUD.Domain.Models.CustomerModels;
+using SharpCRUD.DataAccess.Models.CustomerModels;
 using SharpCRUD.Domain.Extensions;
 using SharpCRUD.Domain.Services.Shared;
 using System;
@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SharpCRUD.Infrastructure;
 
 namespace SharpCRUD.Domain.Services.CustomerModels
 {

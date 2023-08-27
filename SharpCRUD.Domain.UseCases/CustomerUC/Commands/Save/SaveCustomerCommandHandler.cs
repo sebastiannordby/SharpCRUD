@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using SharpCRUD.Domain.Services.Shared;
 using SharpCRUD.Domain.UseCases.Shared;
-using SharpCRUD.Shared.CustomerModels;
+using SharpCRUD.Library.CustomerModels;
 
 namespace SharpCRUD.Domain.UseCases.CustomerUC.Commands.Save
 {

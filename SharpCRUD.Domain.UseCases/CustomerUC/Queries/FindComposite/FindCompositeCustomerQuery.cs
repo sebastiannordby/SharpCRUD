@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using SharpCRUD.Domain.UseCases.Shared;
-using SharpCRUD.Shared.Models.CustomerModels;
+using SharpCRUD.Library.Models.CustomerModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

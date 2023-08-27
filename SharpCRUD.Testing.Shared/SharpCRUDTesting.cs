@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SharpCRUD.Domain;
-using SharpCRUD.Domain;
 using System;
 using SharpCRUD.Domain.UseCases;
 using Microsoft.EntityFrameworkCore;
+using SharpCRUD.Infrastructure;
 
 namespace SharpCRUD.Testing.Shared
 {
@@ -19,7 +19,7 @@ namespace SharpCRUD.Testing.Shared
 
             var services = new ServiceCollection();
 
-            services.ConfigureEntityFramework(options =>
+            services.AddInfrastructureLayer(options =>
             {
                 options.UseInMemoryDatabase(nameof(SharpCRUDTesting), b => {
                     b.EnableNullChecks(false);

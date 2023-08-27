@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -12,8 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SharpCRUD.DataAccess\SharpCRUD.DataAccess.csproj" />
     <ProjectReference Include="..\SharpCRUD.Domain.UseCases\SharpCRUD.Domain.UseCases.csproj" />
     <ProjectReference Include="..\SharpCRUD.Domain\SharpCRUD.Domain.csproj" />
+    <ProjectReference Include="..\SharpCRUD.Infrastructure\SharpCRUD.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

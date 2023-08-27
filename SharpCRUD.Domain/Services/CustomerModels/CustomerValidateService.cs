@@ -1,7 +1,7 @@
 ﻿using FluentValidation.Results;
-using SharpCRUD.Domain.Models.CustomerModels;
+using SharpCRUD.DataAccess.Models.CustomerModels;
 using SharpCRUD.Domain.Services.Shared;
-using SharpCRUD.Shared.Validation.CustomerModels;
+using SharpCRUD.Library.Validation.CustomerModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
