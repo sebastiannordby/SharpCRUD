@@ -38,7 +38,9 @@ When the database is configured you need to setup "secrets.json"-file in Visual 
 ![image](https://github.com/sebastiannordby/SharpCRUD/assets/24465003/43fbb2e3-2fd9-4e83-8d2a-e381ca168896)
 
 The json file should look like this:
+`
 {
   "ConnectionStrings:DefaultConnection": "Server=YOUR_SERVER_NAME;Database=YOUR_DB_NAME;User Id=YOUR_DB_USERNAME;Password=YOUR_DB_PASS;MultipleActiveResultSets=false",
 }
+`
 
