@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SharpCRUD.Communication.Http.Repositories.Customer;
 using SharpCRUD.Communication.Http.Tools;
-using SharpCRUD.Communication.Repositories.Customer;
 using SharpCRUD.Communication.Repositories.CustomerModels;
 using System;
 using System.Collections.Generic;

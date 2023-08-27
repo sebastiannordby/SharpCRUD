@@ -1,4 +1,5 @@
-﻿using SharpCRUD.Communication.Repositories.CustomerModels;
+﻿using SharpCRUD.Communication.Http.Tools;
+using SharpCRUD.Communication.Repositories.CustomerModels;
 using SharpCRUD.Library.Models.CustomerModels;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,11 @@ namespace SharpCRUD.Communication.Http.Repositories.Customer
 {
     internal class HttpCustomerCompositeRepository : ICustomerCompositeRepository
     {
-        public Task<Guid> Save(CustomerCompositeDto customer)
+        private readonly ISharpCRUDHttpClientTask _httpTask;
+
+        public HttpCustomerCompositeRepository(ISharpCRUDHttpClientTask httpTask)
         {
-            throw new NotImplementedException();
+            _httpTask = httpTask;
         }
     }
 }

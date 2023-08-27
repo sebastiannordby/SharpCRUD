@@ -1,4 +1,5 @@
-﻿using SharpCRUD.Library.Models.CustomerModels;
+﻿using SharpCRUD.Library.CustomerModels;
+using SharpCRUD.Library.Models.CustomerModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,17 @@ namespace SharpCRUD.Communication.Models
             bool isNew) : base(existingModel, isNew)
         {
 
+        }
+
+        protected override void SetupProperties()
+        {
+            if (Model.Addresses == null)
+                Model.Addresses = new();
+        }
+
+        internal CustomerDto Compose()
+        {
+            return Model.Compose();
         }
 
         public class Address : EditCompositeBase<CustomerCompositeDto.Address>

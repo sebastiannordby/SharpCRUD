@@ -8,6 +8,6 @@ namespace SharpCRUD.Library.Models
 {
     public abstract class CompositeDto<TDto> : BaseDto
     {
-        public abstract TDto Composite();
+        public abstract TDto Compose();
     }
 }

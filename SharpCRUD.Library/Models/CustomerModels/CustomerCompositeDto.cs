@@ -38,7 +38,7 @@ namespace SharpCRUD.Library.Models.CustomerModels
         }
 
 
-        public override CustomerDto Composite()
+        public override CustomerDto Compose()
         {
             return new(
                 id: Id,

@@ -6,7 +6,7 @@ namespace Frontend.Client
     {
         public async Task<string> GetBaseAPIUrl()
         {
-            return await Task.FromResult("");
+            return await Task.FromResult("https://localhost:7081/");
         }
     }
 }

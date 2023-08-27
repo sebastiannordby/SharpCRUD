@@ -1,6 +1,7 @@
 ﻿using SharpCRUD.Communication.Models;
 using SharpCRUD.Communication.Repositories.CustomerModels;
 using SharpCRUD.Communication.Services;
+using SharpCRUD.Library.Models.CustomerModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,14 @@ namespace SharpCRUD.Communication.Implementation.Services.Customer
 {
     internal class EditCustomerService : IEditCustomerService
     {
+        private readonly ICustomerRepository _repository;
         private readonly ICustomerCompositeRepository _compositeRepository;
 
         public EditCustomerService(
+            ICustomerRepository repository,
             ICustomerCompositeRepository compositeRepository)
         {
+            _repository = repository;
             _compositeRepository = compositeRepository;
         }
 
@@ -24,14 +28,15 @@ namespace SharpCRUD.Communication.Implementation.Services.Customer
             throw new NotImplementedException();
         }
 
-        public Task<EditCustomer> Initialize()
+        public async Task<EditCustomer> Initialize()
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(
+                new EditCustomer(new CustomerCompositeDto(), true));
         }
 
-        public Task<Guid> Save(EditCustomer customer)
+        public async Task<Guid> Save(EditCustomer customer)
         {
-            throw new NotImplementedException();
+            return await _repository.Save(customer.Compose());
         }
     }
 }

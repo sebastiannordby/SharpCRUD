@@ -1,0 +1,47 @@
+﻿@page "/customers"
+@using SharpCRUD.Communication.Models;
+@using SharpCRUD.Communication.Services;
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+@if(_editModel != null)
+{
+    <div class="d-flex flex-column">
+        <h3>New Customer</h3>
+
+        <div>
+            <label>Name: </label>
+            <input @bind-value="_editModel.Name" />
+        </div>
+        <div>
+            <label>Number: </label>
+            <input value="@_editModel.Number" readonly/>
+        </div>
+
+        <button class="btn btn-primary" @onclick="Save">Save</button>
+    </div>
+}
+
+@code {
+    [Inject] 
+    private IEditCustomerService EditService{ get; set; }
+
+    [Inject]
+    private IJSRuntime JSRuntime{ get; set; }
+
+    private EditCustomer _editModel;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _editModel = await EditService.Initialize();
+    }
+
+    private async Task Save()
+    {
+        var generatedId = await EditService.Save(_editModel);
+
+        await JSRuntime.InvokeVoidAsync("alert", "Saved");
+    }
+}

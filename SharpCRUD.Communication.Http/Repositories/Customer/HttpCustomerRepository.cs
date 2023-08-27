@@ -1,4 +1,5 @@
-﻿using SharpCRUD.Communication.Repositories.Customer;
+﻿using SharpCRUD.Communication.Http.Tools;
+using SharpCRUD.Communication.Repositories.CustomerModels;
 using SharpCRUD.Library.CustomerModels;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,17 @@ namespace SharpCRUD.Communication.Http.Repositories.Customer
 {
     internal sealed class HttpCustomerRepository : ICustomerRepository
     {
-        public Task<Guid> Save(CustomerDto customer)
+        private readonly ISharpCRUDHttpClientTask _httpTask;
+
+        public HttpCustomerRepository(ISharpCRUDHttpClientTask httpTask)
         {
-            throw new NotImplementedException();
+            _httpTask = httpTask;
+        }
+
+        public async Task<Guid> Save(CustomerDto customer)
+        {
+            return await _httpTask.Post<Guid>(
+                "Customer/Save", customer);
         }
     }
 }

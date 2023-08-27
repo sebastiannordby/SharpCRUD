@@ -79,7 +79,7 @@ namespace SharpCRUD.Domain.Tests.Services.CustomerModels
 
             customerComposite.Name = updatedName;
 
-            var customerDto = customerComposite.Composite();
+            var customerDto = customerComposite.Compose();
             var updatedCustomerId = await customerService.Save(customerDto);
 
             Assert.IsNotNull(customerComposite);

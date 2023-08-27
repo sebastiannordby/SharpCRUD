@@ -1,4 +1,4 @@
-﻿using SharpCRUD.Library.Models.CustomerModels;
+﻿using SharpCRUD.Library.CustomerModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace SharpCRUD.Communication.Repositories.CustomerModels
 {
-    public interface ICustomerCompositeRepository
+    public interface ICustomerRepository
     {
-        Task<Guid> Save(CustomerCompositeDto customer);
+        Task<Guid> Save(CustomerDto customer);
     }
 }
