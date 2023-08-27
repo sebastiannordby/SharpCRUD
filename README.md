@@ -14,7 +14,7 @@ and maybe get some inspiration 😎
 ## How do i run this project?
 Coming soon...
 
-## This project consist of three parts:
+## How is this project structured?
 
 ### API
 - The API should handle the domain/business logic
