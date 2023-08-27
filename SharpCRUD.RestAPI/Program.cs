@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.Identity.Client;
 using SharpCRUD.Domain;
-using SharpCRUD.Domain;
 using SharpCRUD.Infrastructure;
 
 namespace SharpCRUD.RestAPI
@@ -27,6 +26,8 @@ namespace SharpCRUD.RestAPI
 
             var app = builder.Build();
 
+            EnsureDatabaseState(app);
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -37,6 +38,22 @@ namespace SharpCRUD.RestAPI
             app.UseAuthorization();
             app.MapControllers();
             app.Run();
+        }
+
+        private static void EnsureDatabaseState(IApplicationBuilder app)
+        {
+            using var serviceScope = app.ApplicationServices
+                .GetService<IServiceScopeFactory>().CreateScope();
+            var appDbContext = serviceScope.ServiceProvider.GetRequiredService<SharpCrudContext>();
+
+            try
+            {
+                appDbContext.Database.Migrate();
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }
