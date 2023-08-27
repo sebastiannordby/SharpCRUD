@@ -11,6 +11,9 @@ and maybe get some inspiration 😎
 
 🌟🌟🌟**If you like this concept make sure to give it a star**🌟🌟🌟
 
+## How do i run this project?
+Coming soon...
+
 ## This project consist of three parts:
 
 ### API
