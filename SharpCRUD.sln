@@ -14,6 +14,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{43D5478E-9433-48E2-B8DB-9E3B7412CF97}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		Dockerfile = Dockerfile
+		SharpCRUD.RestAPI\Dockerfile = SharpCRUD.RestAPI\Dockerfile
+		SharpCRUD.RestAPI\Dockerfile.original = SharpCRUD.RestAPI\Dockerfile.original
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpCRUD.Domain", "SharpCRUD.Domain\SharpCRUD.Domain.csproj", "{193B5B85-3F92-4C8D-B74D-6489CFF1CDA4}"
@@ -30,15 +33,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpCRUD.Domain.Tests", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpCRUD.Domain.UseCases", "SharpCRUD.Domain.UseCases\SharpCRUD.Domain.UseCases.csproj", "{1F2BF94D-1033-431F-A395-5C241C3572EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCRUD.Communication", "SharpCRUD.Communication\SharpCRUD.Communication.csproj", "{01E36646-07EE-4FE2-82A0-976BA22DF792}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpCRUD.Communication", "SharpCRUD.Communication\SharpCRUD.Communication.csproj", "{01E36646-07EE-4FE2-82A0-976BA22DF792}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCRUD.Infrastructure", "SharpCRUD.Infrastructure\SharpCRUD.Infrastructure.csproj", "{38E74DE5-A080-4C1C-9805-DE17B6241B96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpCRUD.Infrastructure", "SharpCRUD.Infrastructure\SharpCRUD.Infrastructure.csproj", "{38E74DE5-A080-4C1C-9805-DE17B6241B96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCRUD.DataAccess", "SharpCRUD.DataAccess\SharpCRUD.DataAccess.csproj", "{46679CC9-A1A5-46E9-9F59-42EC204F1159}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpCRUD.DataAccess", "SharpCRUD.DataAccess\SharpCRUD.DataAccess.csproj", "{46679CC9-A1A5-46E9-9F59-42EC204F1159}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCRUD.Library", "SharpCRUD.Library\SharpCRUD.Library.csproj", "{1CB08107-9DD7-4AE5-A3D2-D0FF70AC65D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpCRUD.Library", "SharpCRUD.Library\SharpCRUD.Library.csproj", "{1CB08107-9DD7-4AE5-A3D2-D0FF70AC65D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCRUD.Communication.Http", "SharpCRUD.Communication.Http\SharpCRUD.Communication.Http.csproj", "{6CEC3ABF-C181-4F94-944B-34F73C3197F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpCRUD.Communication.Http", "SharpCRUD.Communication.Http\SharpCRUD.Communication.Http.csproj", "{6CEC3ABF-C181-4F94-944B-34F73C3197F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
